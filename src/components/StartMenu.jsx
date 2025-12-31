@@ -66,6 +66,9 @@ const StartMenu = ({
     referralCode: null
   });
 
+  // 알림 팝업 상태
+  const [showNotification, setShowNotification] = useState(false);
+
   useEffect(() => {
     // Telegram WebApp 사용자 정보 가져오기 (initData 파싱)
     const loadUserData = async () => {
@@ -325,6 +328,15 @@ const StartMenu = ({
             username={telegramUser.username}
             referralCode={telegramUser.referralCode}
           />
+          {/* 알림 버튼 (새 기능 업데이트 공지) */}
+          <button 
+            className="header-icon-btn notification-btn" 
+            onClick={() => { soundManager.playButtonClick(); setShowNotification(true); }} 
+            title="Обновление"
+          >
+            <span className="icon-notification">🔔</span>
+            <span className="notification-badge"></span>
+          </button>
           {/* 프로모션 코드 소식 버튼 */}
           <button className="header-icon-btn" onClick={() => { soundManager.playButtonClick(); onShowPromoCode(); }} title="Промокод">
             <span className="icon-promo">🎁</span>
@@ -413,6 +425,53 @@ const StartMenu = ({
           О НАС
         </button>
       </div>
+
+      {/* 알림 모달 */}
+      {showNotification && (
+        <>
+          <div className="notification-overlay" onClick={() => setShowNotification(false)} />
+          <div className="notification-modal">
+            <button className="notification-close-btn" onClick={() => setShowNotification(false)}>✕</button>
+            <div className="notification-header">
+              <span className="notification-icon">🎄</span>
+              <h2 className="notification-title">Скоро обновление!</h2>
+            </div>
+            <div className="notification-content">
+              <div className="update-date">
+                <span className="date-icon">📅</span>
+                <span className="date-text">7 января 2026</span>
+              </div>
+              <h3 className="update-subtitle">🎅 Рождественское обновление</h3>
+              <div className="features-list">
+                <div className="feature-item">
+                  <span className="feature-icon">🎁</span>
+                  <span className="feature-text">Новые праздничные персонажи</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🏆</span>
+                  <span className="feature-text">Специальные рождественские ивенты</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">💰</span>
+                  <span className="feature-text">Бонусные награды и подарки</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🎮</span>
+                  <span className="feature-text">Новые игровые режимы</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">✨</span>
+                  <span className="feature-text">И многое другое...</span>
+                </div>
+              </div>
+              <div className="stay-tuned">
+                <p>Следите за новостями!</p>
+                <p className="coming-soon">Coming Soon 🎄</p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div >
   );
 };

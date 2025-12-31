@@ -51,7 +51,7 @@ const NewYear2026 = ({ onComplete }) => {
       {/* 메인 콘텐츠 */}
       <div className="new-year-content">
         <div className="year-number">2026</div>
-        <div className="new-year-title">새해 복 많이 받으세요!</div>
+        <div className="new-year-title">С Новым Годом!</div>
         <div className="new-year-subtitle">Happy New Year!</div>
         <div className="celebration-icons">
           <span className="celebration-icon">🎊</span>
