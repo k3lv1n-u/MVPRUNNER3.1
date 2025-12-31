@@ -11,6 +11,7 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [purchasing, setPurchasing] = useState(null);
+  const [itemQuantities, setItemQuantities] = useState({}); // 각 아이템의 수량 관리
   const [isLandscape, setIsLandscape] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth > window.innerHeight;
@@ -134,22 +135,25 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
       return;
     }
 
-    if (balance < price) {
+    const quantity = itemQuantities[itemId] || 1;
+    const totalPrice = price * quantity;
+
+    if (balance < totalPrice) {
       alert('Недостаточно средств');
       return;
     }
 
     // eslint-disable-next-line no-restricted-globals
-    if (!window.confirm(`Купить предмет за ${price} монет?`)) {
+    if (!window.confirm(`Купить ${quantity}x предмет за ${totalPrice} монет?`)) {
       return;
     }
 
     try {
       setPurchasing(itemId);
-      const result = await api.purchaseItem(parseInt(telegramId), itemId);
+      const result = await api.purchaseItem(parseInt(telegramId), itemId, quantity);
 
       if (result.success) {
-        alert(`Предмет куплен!\nВаш баланс: ${result.balance} монет`);
+        alert(`Предмет куплен! (x${quantity})\nВаш баланс: ${result.balance} монет`);
 
         // 잔액 업데이트
         if (onBalanceUpdate) {
@@ -157,6 +161,9 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
         }
 
         localStorage.setItem('balance', result.balance.toString());
+
+        // 수량 초기화
+        setItemQuantities(prev => ({ ...prev, [itemId]: 1 }));
 
         // 목록 새로고침
         loadPromoCodes();
@@ -168,6 +175,28 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
     } finally {
       setPurchasing(null);
     }
+  };
+
+  const increaseQuantity = (itemId, maxAvailable, price) => {
+    setItemQuantities(prev => {
+      const currentQty = prev[itemId] || 1;
+      const maxAffordable = Math.floor(balance / price);
+      const maxPossible = maxAvailable === -1 ? maxAffordable : Math.min(maxAvailable, maxAffordable);
+      if (currentQty < maxPossible) {
+        return { ...prev, [itemId]: currentQty + 1 };
+      }
+      return prev;
+    });
+  };
+
+  const decreaseQuantity = (itemId) => {
+    setItemQuantities(prev => {
+      const currentQty = prev[itemId] || 1;
+      if (currentQty > 1) {
+        return { ...prev, [itemId]: currentQty - 1 };
+      }
+      return prev;
+    });
   };
 
   return (
@@ -261,17 +290,82 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
                           )}
                         </div>
                         <div className="promo-code-actions">
+                          {/* 수량 선택 UI */}
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            marginBottom: '8px'
+                          }}>
+                            <button
+                              onClick={() => { soundManager.playButtonClick(); decreaseQuantity(item.id); }}
+                              style={{
+                                width: '28px',
+                                height: '28px',
+                                borderRadius: '8px',
+                                border: 'none',
+                                background: 'linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%)',
+                                color: '#5d6d7e',
+                                fontSize: '16px',
+                                fontWeight: '900',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                boxShadow: '0 2px 8px rgba(161, 196, 253, 0.3)',
+                                transition: 'all 0.2s'
+                              }}
+                              disabled={!itemQuantities[item.id] || itemQuantities[item.id] <= 1}
+                            >
+                              −
+                            </button>
+                            <span style={{
+                              minWidth: '30px',
+                              textAlign: 'center',
+                              fontSize: '14px',
+                              fontWeight: '900',
+                              color: '#333'
+                            }}>
+                              {itemQuantities[item.id] || 1}
+                            </span>
+                            <button
+                              onClick={() => { soundManager.playButtonClick(); increaseQuantity(item.id, item.available, item.price); }}
+                              style={{
+                                width: '28px',
+                                height: '28px',
+                                borderRadius: '8px',
+                                border: 'none',
+                                background: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%)',
+                                color: '#ffffff',
+                                fontSize: '16px',
+                                fontWeight: '900',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                boxShadow: '0 2px 8px rgba(255, 107, 107, 0.3)',
+                                transition: 'all 0.2s'
+                              }}
+                              disabled={
+                                (item.available !== -1 && (itemQuantities[item.id] || 1) >= item.available) ||
+                                ((itemQuantities[item.id] || 1) * item.price >= balance)
+                              }
+                            >
+                              +
+                            </button>
+                          </div>
                           <button
                             className="purchase-btn"
                             onClick={() => { soundManager.playButtonClick(); handleItemPurchase(item.id, item.price); }}
-                            disabled={purchasing === item.id || balance < item.price || (item.available !== -1 && item.available <= 0)}
+                            disabled={purchasing === item.id || balance < (item.price * (itemQuantities[item.id] || 1)) || (item.available !== -1 && item.available <= 0)}
                           >
                             {item.price === 0 ? (
                               <span style={{ fontSize: '1em', fontWeight: '900' }}>БЕСПЛАТНО</span>
                             ) : (
                               <>
                                 <span className="price-icon">🪙</span>
-                                <span className="price-value">{item.price}</span>
+                                <span className="price-value">{item.price * (itemQuantities[item.id] || 1)}</span>
                               </>
                             )}
                           </button>

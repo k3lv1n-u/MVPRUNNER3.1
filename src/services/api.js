@@ -701,14 +701,14 @@ class ApiService {
   // ========== END NOTIFICATION API ==========
 
   // 아이템 구매
-  async purchaseItem(telegramId, itemId) {
+  async purchaseItem(telegramId, itemId, quantity = 1) {
     try {
       const response = await this.makeRequest(`${API_BASE_URL}/items/${telegramId}/purchase`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ itemId }),
+        body: JSON.stringify({ itemId, quantity }),
       });
 
       if (!response.ok) {
