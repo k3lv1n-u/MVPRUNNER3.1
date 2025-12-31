@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import soundManager from '../utils/soundManager';
 import './Leaderboard.css';
+import './ChristmasStyles.css';
 
 const Leaderboard = ({ onBack }) => {
   const [leaderboardData, setLeaderboardData] = useState([]);
@@ -349,7 +350,7 @@ const Leaderboard = ({ onBack }) => {
 
         {/* 뒤로가기 버튼 */}
         <div className="leaderboard-footer">
-          <button className="back-btn" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
+          <button className="back-btn christmas-btn-green" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
             НАЗАД
           </button>
         </div>

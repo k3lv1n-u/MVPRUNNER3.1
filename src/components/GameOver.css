@@ -21,9 +21,42 @@
   position: relative;
 }
 
-/* Stars handled globally */
+/* 크리스마스 눈송이 배경 */
 .stars-background {
-  display: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.stars-background .star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .game-over-content {
@@ -63,10 +96,15 @@
 .title-text {
   font-size: 36px;
   font-weight: 900;
-  color: #ff4444;
+  background: linear-gradient(135deg, #c41e3a 0%, #165b33 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-transform: uppercase;
   letter-spacing: 3px;
   margin: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  position: relative;
 }
 
 /* 점수 표시 영역 */
@@ -254,95 +292,98 @@
 }
 
 .game-over-btn.restart-btn {
-  border-color: #ffffff;
+  border-color: #c41e3a;
   font-size: 17px;
   font-weight: 700;
   padding: 18px 24px;
-  background: #000000;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+}
+
+/* 재시작 버튼 위에 눈 효과 */
+.game-over-btn.restart-btn::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 10% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 25% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 45% 50%, #ffffff 0%, #ffffff 48%, transparent 52%),
+    radial-gradient(circle at 60% 50%, #f0f8ff 0%, #f0f8ff 42%, transparent 47%),
+    radial-gradient(circle at 78% 50%, #ffffff 0%, #ffffff 46%, transparent 50%),
+    radial-gradient(circle at 92% 50%, #f0f8ff 0%, #f0f8ff 44%, transparent 48%);
+  background-size: 15% 100%, 12% 100%, 18% 100%, 14% 100%, 16% 100%, 13% 100%;
+  background-position: 5% 0, 20% 0, 38% 0, 56% 0, 72% 0, 88% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
 }
 
 .game-over-btn.menu-btn {
-  background: linear-gradient(135deg, #4a3f8f 0%, #2e4a7d 50%, #4a3f8f 100%);
+  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 50%, #165b33 100%);
   border: none;
   position: relative;
   overflow: visible;
   padding: 20px 24px;
-  box-shadow: 0 4px 15px rgba(74, 63, 143, 0.4);
+  box-shadow: 0 4px 15px rgba(22, 91, 51, 0.4);
 }
 
+/* 메뉴 버튼 위에 눈 효과 */
 .game-over-btn.menu-btn::before {
   content: '';
   position: absolute;
-  top: -2px;
+  top: -8px;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    #ffffff 5%, 
-    transparent 10%,
-    #ffffff 15%,
-    transparent 20%,
-    #ffffff 25%,
-    transparent 30%,
-    #ffffff 35%,
-    transparent 40%,
-    #ffffff 45%,
-    transparent 50%,
-    #ffffff 55%,
-    transparent 60%,
-    #ffffff 65%,
-    transparent 70%,
-    #ffffff 75%,
-    transparent 80%,
-    #ffffff 85%,
-    transparent 90%,
-    #ffffff 95%,
-    transparent 100%);
-  border-radius: 2px;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 8% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 22% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 38% 50%, #ffffff 0%, #ffffff 48%, transparent 52%),
+    radial-gradient(circle at 55% 50%, #f0f8ff 0%, #f0f8ff 42%, transparent 47%),
+    radial-gradient(circle at 72% 50%, #ffffff 0%, #ffffff 46%, transparent 50%),
+    radial-gradient(circle at 88% 50%, #f0f8ff 0%, #f0f8ff 44%, transparent 48%);
+  background-size: 16% 100%, 13% 100%, 17% 100%, 15% 100%, 14% 100%, 12% 100%;
+  background-position: 3% 0, 17% 0, 33% 0, 50% 0, 67% 0, 85% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
 }
 
+/* 메뉴 버튼 아래 그림자 효과 (얼음 느낌) */
 .game-over-btn.menu-btn::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 4px;
+  bottom: -3px;
+  left: 5%;
+  right: 5%;
+  height: 3px;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    #ffffff 5%, 
-    transparent 10%,
-    #ffffff 15%,
-    transparent 20%,
-    #ffffff 25%,
-    transparent 30%,
-    #ffffff 35%,
-    transparent 40%,
-    #ffffff 45%,
-    transparent 50%,
-    #ffffff 55%,
-    transparent 60%,
-    #ffffff 65%,
-    transparent 70%,
-    #ffffff 75%,
-    transparent 80%,
-    #ffffff 85%,
-    transparent 90%,
-    #ffffff 95%,
+    rgba(173, 216, 230, 0.3) 20%,
+    rgba(173, 216, 230, 0.5) 50%,
+    rgba(173, 216, 230, 0.3) 80%,
     transparent 100%);
-  border-radius: 2px;
+  border-radius: 50%;
+  filter: blur(2px);
 }
 
 .game-over-btn:hover {
-  background: #222222;
-  border-color: #ffffff;
   transform: translateY(-2px);
 }
 
+.game-over-btn.restart-btn:hover {
+  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
+  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
+}
+
 .game-over-btn.menu-btn:hover {
-  background: linear-gradient(135deg, #5a4f9f 0%, #3e5a8d 50%, #5a4f9f 100%);
-  box-shadow: 0 6px 20px rgba(74, 63, 143, 0.6);
+  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%);
+  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
   transform: translateY(-2px);
 }
 

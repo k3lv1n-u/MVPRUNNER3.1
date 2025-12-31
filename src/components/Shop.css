@@ -1,9 +1,9 @@
-/* 모바일 우선 디자인 - 텔레그램 모바일 크기 기준 */
+/* 크리스마스 상점 디자인 */
 .shop-container {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: #000000;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -19,16 +19,49 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* Stars handled globally */
+/* 크리스마스 눈송이 배경 */
 .stars-background {
-  display: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.stars-background .star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .shop-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
@@ -39,18 +72,21 @@
 .shop-header {
   text-align: center;
   padding: 20px;
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: transparent;
+  border: none;
 }
 
 .shop-title {
   font-size: 2.2em;
   font-weight: 900;
-  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff6b6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 15px;
   letter-spacing: 4px;
   text-transform: uppercase;
+  filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
 }
 
 .balance-display {
@@ -58,24 +94,33 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 1.1em;
+  font-size: 1.3em;
   color: #ffffff;
   margin-top: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .balance-label {
-  color: #888888;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .balance-value {
-  font-weight: 700;
+  font-weight: 900;
   color: #FFD700;
-  /* Gold */
+  font-size: 1.2em;
 }
 
 .balance-icon {
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: #FFD700;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
 }
 
 .loading-message,
@@ -84,120 +129,234 @@
   text-align: center;
   padding: 40px 20px;
   font-size: 1.1em;
-  color: #888888;
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  color: rgba(255, 255, 255, 0.7);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .error-message {
-  color: #ff4444;
-  border-color: #ff4444;
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.5);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 107, 107, 0.1) 100%);
 }
 
 .promo-codes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   width: 100%;
 }
 
 .promo-code-card {
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px !important;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   transition: all 0.3s ease;
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .promo-code-card:hover {
-  border-color: #ffffff;
-  transform: translateY(-2px);
+  border-color: rgba(255, 215, 0, 0.6);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.3);
+}
+
+/* HIT 뱃지 */
+.promo-code-card::before {
+  content: 'HIT!';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #000000;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+  z-index: 2;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* 무료 아이템 스타일 */
+.promo-code-card.free-item::before {
+  content: 'БЕСПЛАТНО';
+  background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+  color: #ffffff;
+  padding: 4px 10px;
+}
+
+.promo-code-card.free-item .purchase-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.promo-code-card.free-item .purchase-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5CB85C 0%, #77CC77 100%);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
 }
 
 .promo-code-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 아이템 이미지 */
+.item-image-container {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.item-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* 아이템 아이콘 (이미지가 없을 때) */
+.item-icon {
+  font-size: 64px;
+  filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.5));
 }
 
 .promo-code-title {
-  font-size: 1.2em;
-  color: #00ffff;
-  margin-bottom: 8px;
+  font-size: 0.95em;
+  color: #ffffff;
+  margin-bottom: 6px;
+  margin-top: 8px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
 }
 
 .promo-code-details {
-  font-size: 0.9em;
-  color: #888888;
+  font-size: 0.7em;
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 5px;
+  line-height: 1.4;
 }
 
 .promo-code-stock {
-  font-size: 0.85em;
-  color: #666666;
+  font-size: 0.65em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 4px;
 }
 
 .promo-code-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   padding-top: 8px;
-  border-top: 1px solid #333333;
+  width: 100%;
 }
 
 .promo-code-price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 1.2em;
-  color: #FFD700;
-  font-weight: 700;
-  padding: 8px 0;
+  display: none;
 }
 
 .price-icon {
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .purchase-btn {
   width: 100%;
-  padding: 16px 24px;
-  background: #000000;
-  border: 1px solid #ffffff;
-  border-radius: 0 !important;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  border: none;
+  border-radius: 15px !important;
   color: #ffffff;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  position: relative;
+  overflow: visible;
+}
+
+/* 버튼 위 눈 효과 */
+.purchase-btn::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: 
+    radial-gradient(circle at 15% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 45% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 75% 50%, #ffffff 0%, #ffffff 48%, transparent 52%);
+  background-size: 25% 100%, 20% 100%, 22% 100%;
+  background-position: 10% 0, 40% 0, 70% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.5));
+  z-index: 1;
+}
+
+/* 가격을 버튼 안에 표시 */
+.purchase-btn .price-value {
+  font-size: 1.1em;
+  font-weight: 900;
+}
+
+.purchase-btn .price-icon {
+  font-size: 1.2em;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.8));
 }
 
 .purchase-btn:hover:not(:disabled) {
-  background: #222222;
+  background: linear-gradient(135deg, #ff9d5c 0%, #ff7b45 100%);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
 }
 
 .purchase-btn:active:not(:disabled) {
-  background: #333333;
-  transform: none;
+  transform: translateY(0);
 }
 
 .purchase-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: #666666;
-  color: #888888;
+  background: linear-gradient(135deg, #666666 0%, #555555 100%);
+  box-shadow: none;
 }
 
 .shop-footer {
@@ -206,22 +365,20 @@
   justify-content: center;
   padding: 20px 0;
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .back-btn,
 .refresh-btn {
-  width: 100%;
-  padding: 16px 24px;
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 15px !important;
   color: #ffffff;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-sizing: border-box;
@@ -231,17 +388,68 @@
   gap: 8px;
 }
 
+.back-btn {
+  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 50%, #165b33 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(22, 91, 51, 0.4);
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+}
+
 .back-btn:hover,
 .refresh-btn:hover {
-  background: #222222;
-  border-color: #ffffff;
   transform: translateY(-2px);
+}
+
+.back-btn:hover {
+  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%);
+  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
+}
+
+.refresh-btn:hover {
+  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
+  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
 }
 
 .back-btn:active,
 .refresh-btn:active {
-  background: #333333;
-  transform: none;
+  transform: translateY(0);
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 380px) {
+  .promo-codes-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .promo-code-card {
+    max-width: none;
+  }
+  
+  .item-image-container {
+    height: 140px;
+  }
+}
+
+/* 큰 화면 대응 */
+@media (min-width: 768px) {
+  .promo-codes-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .promo-codes-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .shop-content {
+    max-width: 1200px;
+  }
 }
 
 /* Mobile Portrait */

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import api from '../services/api';
 import soundManager from '../utils/soundManager';
 import './Shop.css';
+import './ChristmasStyles.css';
 
 const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
   const [promoCodes, setPromoCodes] = useState([]);
@@ -18,18 +19,22 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
   });
 
   const stars = useMemo(() => {
-    return [...Array(50)].map((_, i) => (
-      <div
-        key={i}
-        className="star"
-        style={{
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random() * 3}s`,
-          animationDuration: `${2 + Math.random() * 2}s`
-        }}
-      ></div>
-    ));
+    return [...Array(50)].map((_, i) => {
+      const size = 2 + Math.random() * 4; // 2-6px
+      return (
+        <div
+          key={i}
+          className="star"
+          style={{
+            left: `${Math.random() * 100}%`,
+            width: `${size}px`,
+            height: `${size}px`,
+            animationDelay: `${Math.random() * 5}s`,
+            animationDuration: `${5 + Math.random() * 10}s`
+          }}
+        ></div>
+      );
+    });
   }, []);
 
   useEffect(() => {
@@ -185,7 +190,20 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
           <>
             {items.length > 0 && (
               <>
-                <h2 style={{ color: '#fff', marginTop: '20px', marginBottom: '10px' }}>Предметы</h2>
+                <h2 style={{ 
+                  background: 'linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff6b6b 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontSize: '1.8em',
+                  fontWeight: '900',
+                  textAlign: 'center',
+                  marginTop: '20px',
+                  marginBottom: '16px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px',
+                  filter: 'drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4))'
+                }}>Предметы</h2>
                 <div className="promo-codes-list">
                   {items.map((item) => {
                     const ownedItem = inventory.find(inv => inv.itemKey === item.itemKey);
@@ -199,20 +217,22 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
                     else if (item.itemKey === 'money-boost') iconUrl = '/moneypng.png';
 
                     return (
-                      <div key={item.id} className="promo-code-card">
+                      <div key={item.id} className={`promo-code-card ${item.price === 0 ? 'free-item' : ''}`}>
                         <div className="promo-code-info">
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                            {iconUrl && (
+                          <div className="item-image-container">
+                            {iconUrl ? (
                               <img
                                 src={iconUrl}
                                 alt={item.name}
-                                style={{ width: '40px', height: '40px', objectFit: 'contain' }}
+                                className="item-image"
                               />
+                            ) : (
+                              <div className="item-icon">🎁</div>
                             )}
-                            <h3 className="promo-code-title" style={{ margin: 0 }}>
-                              {item.name || 'Игровой предмет'}
-                            </h3>
                           </div>
+                          <h3 className="promo-code-title">
+                            {item.name || 'Игровой предмет'}
+                          </h3>
                           {item.description && (
                             <p className="promo-code-details">
                               {item.description}
@@ -224,29 +244,36 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
                           {ownedQuantity > 0 && (
                             <div style={{
                               marginTop: '8px',
-                              padding: '4px 8px',
-                              background: 'rgba(76, 175, 80, 0.2)',
-                              border: '1px solid #4CAF50',
-                              borderRadius: '4px',
-                              color: '#4CAF50',
-                              fontSize: '14px',
-                              fontWeight: 'bold'
+                              padding: '4px 10px',
+                              background: 'linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(102, 187, 106, 0.3))',
+                              border: '1.5px solid rgba(76, 175, 80, 0.6)',
+                              borderRadius: '10px',
+                              color: '#66BB6A',
+                              fontSize: '10px',
+                              fontWeight: '900',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.5px',
+                              backdropFilter: 'blur(5px)',
+                              boxShadow: '0 2px 8px rgba(76, 175, 80, 0.2)'
                             }}>
                               Имеется: {ownedQuantity}
                             </div>
                           )}
                         </div>
                         <div className="promo-code-actions">
-                          <div className="promo-code-price">
-                            <span className="price-value">{item.price}</span>
-                            <span className="price-icon">🪙</span>
-                          </div>
                           <button
                             className="purchase-btn"
                             onClick={() => { soundManager.playButtonClick(); handleItemPurchase(item.id, item.price); }}
                             disabled={purchasing === item.id || balance < item.price || (item.available !== -1 && item.available <= 0)}
                           >
-                            {purchasing === item.id ? 'Покупка...' : 'Купить'}
+                            {item.price === 0 ? (
+                              <span style={{ fontSize: '1em', fontWeight: '900' }}>БЕСПЛАТНО</span>
+                            ) : (
+                              <>
+                                <span className="price-icon">🪙</span>
+                                <span className="price-value">{item.price}</span>
+                              </>
+                            )}
                           </button>
                         </div>
                       </div>
@@ -257,13 +284,29 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
             )}
             {promoCodes.length > 0 && (
               <>
-                <h2 style={{ color: '#fff', marginTop: '20px', marginBottom: '10px' }}>Промокоды</h2>
+                <h2 style={{ 
+                  background: 'linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff6b6b 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontSize: '1.8em',
+                  fontWeight: '900',
+                  textAlign: 'center',
+                  marginTop: '20px',
+                  marginBottom: '16px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px',
+                  filter: 'drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4))'
+                }}>Промокоды</h2>
                 <div className="promo-codes-list">
                   {promoCodes.map((item) => (
-                    <div key={item.id} className="promo-code-card">
+                    <div key={item.id} className={`promo-code-card ${item.price === 0 ? 'free-item' : ''}`}>
                       <div className="promo-code-info">
+                        <div className="item-image-container">
+                          <div className="item-icon">🎫</div>
+                        </div>
                         <h3 className="promo-code-title">
-                          {item.name || item.description || 'Промокод для рулетки'}
+                          {item.name || item.description || 'Промокод'}
                         </h3>
                         {item.description && (
                           <p className="promo-code-details">
@@ -272,7 +315,7 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
                         )}
                         {item.promoCodeConfig?.wheelConfigId && (
                           <p className="promo-code-details">
-                            Рулетка: {item.promoCodeConfig.wheelConfigId.name} ({item.promoCodeConfig.wheelConfigId.segments.length} сегментов)
+                            {item.promoCodeConfig.wheelConfigId.name}
                           </p>
                         )}
                         <div className="promo-code-stock">
@@ -280,16 +323,19 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
                         </div>
                       </div>
                       <div className="promo-code-actions">
-                        <div className="promo-code-price">
-                          <span className="price-value">{item.price}</span>
-                          <span className="price-icon">🪙</span>
-                        </div>
                         <button
                           className="purchase-btn"
                           onClick={() => { soundManager.playButtonClick(); handlePurchase(item.id, item.price); }}
                           disabled={purchasing === item.id || balance < item.price || (item.available !== -1 && item.available <= 0)}
                         >
-                          {purchasing === item.id ? 'Покупка...' : 'Купить'}
+                          {item.price === 0 ? (
+                            <span style={{ fontSize: '1em', fontWeight: '900' }}>БЕСПЛАТНО</span>
+                          ) : (
+                            <>
+                              <span className="price-icon">🪙</span>
+                              <span className="price-value">{item.price}</span>
+                            </>
+                          )}
                         </button>
                       </div>
                     </div>
@@ -305,10 +351,10 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
 
         <div className="shop-footer">
           <button className="back-btn" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
-            НАЗАД
+            ← НАЗАД
           </button>
           <button className="refresh-btn" onClick={() => { soundManager.playButtonClick(); loadPromoCodes(); }}>
-            ОБНОВИТЬ
+            🔄 ОБНОВИТЬ
           </button>
         </div>
       </div>

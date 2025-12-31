@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import api from '../services/api';
 import soundManager from '../utils/soundManager';
 import './GameOver.css';
+import './ChristmasStyles.css';
 
 const GameOver = ({ 
   score, 
@@ -67,19 +68,19 @@ const GameOver = ({
     }
   }, [promoCode]);
 
-  // 별 배경 최적화
+  // 크리스마스 눈송이 배경 최적화
   const stars = useMemo(() => {
     return [...Array(50)].map((_, i) => ({
       id: i,
       left: Math.random() * 100,
-      top: Math.random() * 100,
-      delay: Math.random() * 3,
-      duration: 2 + Math.random() * 2
+      size: 2 + Math.random() * 4, // 2-6px
+      delay: Math.random() * 5,
+      duration: 5 + Math.random() * 10 // 5-15초
     }));
   }, []);
   return (
     <div className="game-over-container">
-      {/* 밤하늘 별 배경 */}
+      {/* 크리스마스 눈송이 배경 */}
       <div className="stars-background">
         {stars.map((star) => (
           <div 
@@ -87,7 +88,8 @@ const GameOver = ({
             className="star" 
             style={{
               left: `${star.left}%`,
-              top: `${star.top}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
               animationDelay: `${star.delay}s`,
               animationDuration: `${star.duration}s`
             }}

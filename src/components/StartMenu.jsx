@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './StartMenu.css';
+import './ChristmasStyles.css';
 import api from '../services/api';
 import { collectFullFingerprint } from '../utils/fingerprintCollector';
 import DeviceCheckLoading from './DeviceCheckLoading';

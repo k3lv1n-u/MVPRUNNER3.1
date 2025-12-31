@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import soundManager from '../utils/soundManager';
 import './About.css';
+import './ChristmasStyles.css';
 
 const About = ({ onBack }) => {
   // 별 위치 메모이제이션 (성능 최적화)
@@ -39,7 +40,7 @@ const About = ({ onBack }) => {
             <strong>MVP Runner</strong> — это еженедельный соревновательный раннер с реальными призами в USDT. Игроки участвуют в забегах, набирают очки, используют имбовые предметы и борются за первое место. Каждый забег — новые правила, новый банк и новые победители.
           </p>
         </div>
-        <button className="back-btn" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
+        <button className="back-btn christmas-btn-green" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
           НАЗАД
         </button>
       </div>

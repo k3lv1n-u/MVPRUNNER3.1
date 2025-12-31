@@ -80,33 +80,30 @@
 
 .purple-star {
   position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #9d00ff;
-  /* Bright Purple */
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 4px #9d00ff, 0 0 8px #d480ff;
-  /* Purple Glow */
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
   opacity: 0;
 }
 
 @keyframes purpleRain {
   0% {
-    transform: translateY(-20px) translateX(0px);
+    transform: translateY(-10vh) rotate(0deg);
     opacity: 0;
   }
 
   10% {
-    opacity: 1;
+    opacity: 0.8;
   }
 
   90% {
-    opacity: 1;
+    opacity: 0.8;
   }
 
   100% {
-    transform: translateY(110vh) translateX(20px);
-    /* 화면 아래로 떨어지면서 약간 오른쪽으로 */
+    transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
 }
@@ -209,8 +206,8 @@
 }
 
 .drop-btn {
-  background: #111111;
-  border: 1px solid #333333;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  border: none;
   border-radius: 0 !important;
   padding: 8px 16px;
   color: #ffffff;
@@ -218,17 +215,38 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 3px 10px rgba(196, 30, 58, 0.3);
+}
+
+.drop-btn::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: 
+    radial-gradient(circle at 15% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 45% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 75% 50%, #ffffff 0%, #ffffff 48%, transparent 52%);
+  background-size: 25% 100%, 20% 100%, 22% 100%;
+  background-position: 10% 0, 40% 0, 70% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.5));
 }
 
 .drop-btn:active {
-  background: #222222;
+  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
+  transform: translateY(1px);
 }
 
 .header-icon-btn {
   width: 36px;
   height: 36px;
-  background: #111111;
-  border: 1px solid #333333;
+  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 100%);
+  border: none;
   border-radius: 0 !important;
   display: flex;
   align-items: center;
@@ -238,10 +256,31 @@
   cursor: pointer;
   padding: 0;
   transition: all 0.2s ease;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 3px 10px rgba(22, 91, 51, 0.3);
+}
+
+.header-icon-btn::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: 
+    radial-gradient(circle at 20% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 80% 50%, #ffffff 0%, #ffffff 48%, transparent 52%);
+  background-size: 28% 100%, 24% 100%, 26% 100%;
+  background-position: 15% 0, 45% 0, 75% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.5));
 }
 
 .header-icon-btn:active {
-  background: #222222;
+  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 100%);
+  transform: translateY(1px);
 }
 
 .balance-icon-btn {
@@ -357,8 +396,8 @@
 .menu-btn {
   width: 100%;
   padding: 16px 24px;
-  background: #111111;
-  border: 1px solid #333333;
+  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 50%, #165b33 100%);
+  border: none;
   border-radius: 0 !important;
   color: #ffffff;
   font-size: 15px;
@@ -372,25 +411,74 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 15px rgba(22, 91, 51, 0.4);
+}
+
+/* 메뉴 버튼 위에 눈 효과 */
+.menu-btn::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 8% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 22% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 38% 50%, #ffffff 0%, #ffffff 48%, transparent 52%),
+    radial-gradient(circle at 55% 50%, #f0f8ff 0%, #f0f8ff 42%, transparent 47%),
+    radial-gradient(circle at 72% 50%, #ffffff 0%, #ffffff 46%, transparent 50%),
+    radial-gradient(circle at 88% 50%, #f0f8ff 0%, #f0f8ff 44%, transparent 48%);
+  background-size: 16% 100%, 13% 100%, 17% 100%, 15% 100%, 14% 100%, 12% 100%;
+  background-position: 3% 0, 17% 0, 33% 0, 50% 0, 67% 0, 85% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
 }
 
 .menu-btn.primary-btn {
-  border-color: #ffffff;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
   font-size: 16px;
   font-weight: 700;
   padding: 18px 24px;
-  background: #000000;
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+}
+
+/* 기본 버튼 위에 눈 효과 */
+.menu-btn.primary-btn::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 10% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 25% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 45% 50%, #ffffff 0%, #ffffff 48%, transparent 52%),
+    radial-gradient(circle at 60% 50%, #f0f8ff 0%, #f0f8ff 42%, transparent 47%),
+    radial-gradient(circle at 78% 50%, #ffffff 0%, #ffffff 46%, transparent 50%),
+    radial-gradient(circle at 92% 50%, #f0f8ff 0%, #f0f8ff 44%, transparent 48%);
+  background-size: 15% 100%, 12% 100%, 18% 100%, 14% 100%, 16% 100%, 13% 100%;
+  background-position: 5% 0, 20% 0, 38% 0, 56% 0, 72% 0, 88% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
 }
 
 .menu-btn:hover {
-  background: #222222;
-  border-color: #ffffff;
-  transform: none;
+  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%);
+  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
+  transform: translateY(-2px);
+}
+
+.menu-btn.primary-btn:hover {
+  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
+  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
 }
 
 .menu-btn:active {
-  background: #333333;
-  transform: none;
+  transform: translateY(0);
 }
 
 .shop-icon {

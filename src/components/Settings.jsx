@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import './Settings.css';
+import './ChristmasStyles.css';
 import soundManager from '../utils/soundManager';
 
 const Settings = ({ onBack }) => {
@@ -153,7 +154,7 @@ const Settings = ({ onBack }) => {
           </div>
         </div>
 
-        <button className="back-btn" onClick={handleBackClick}>
+        <button className="back-btn christmas-btn-green" onClick={handleBackClick}>
           НАЗАД
         </button>
       </div>

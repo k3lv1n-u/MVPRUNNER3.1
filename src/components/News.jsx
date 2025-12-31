@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import api from '../services/api';
 import soundManager from '../utils/soundManager';
 import './News.css';
+import './ChristmasStyles.css';
 
 const News = ({ onBack }) => {
   const [weeklyGoal, setWeeklyGoal] = useState(null);
@@ -127,7 +128,7 @@ const News = ({ onBack }) => {
 
         {/* 뒤로가기 버튼 */}
         <div className="news-footer">
-          <button className="back-btn" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
+          <button className="back-btn christmas-btn-green" onClick={() => { soundManager.playButtonClick(); onBack(); }}>
             НАЗАД
           </button>
         </div>

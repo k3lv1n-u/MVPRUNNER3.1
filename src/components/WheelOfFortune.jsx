@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import api from '../services/api';
 import soundManager from '../utils/soundManager';
 import './WheelOfFortune.css';
+import './ChristmasStyles.css';
 
 const WheelOfFortune = ({ onBack, onWin, telegramId, initialPromoCode = null }) => {
   const [isSpinning, setIsSpinning] = useState(false);
@@ -318,7 +319,7 @@ const WheelOfFortune = ({ onBack, onWin, telegramId, initialPromoCode = null }) 
               {codeError && (
                 <div className="promo-code-error">{codeError}</div>
               )}
-              <button type="submit" className="promo-code-submit-btn">
+              <button type="submit" className="promo-code-submit-btn christmas-btn-red">
                 ПОДТВЕРДИТЬ
               </button>
             </form>

@@ -1,0 +1,132 @@
+/* 크리스마스 공통 스타일 - 모든 메뉴 컴포넌트에 적용 */
+
+/* 눈송이 배경 애니메이션 */
+.christmas-snowflakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.christmas-snowflake {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: christmasSnowfall linear infinite;
+}
+
+@keyframes christmasSnowfall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 버튼 위 눈 효과 - 빨간색 버튼용 */
+.christmas-btn-red {
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%) !important;
+  border: none !important;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+}
+
+.christmas-btn-red::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 10% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 25% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 45% 50%, #ffffff 0%, #ffffff 48%, transparent 52%),
+    radial-gradient(circle at 60% 50%, #f0f8ff 0%, #f0f8ff 42%, transparent 47%),
+    radial-gradient(circle at 78% 50%, #ffffff 0%, #ffffff 46%, transparent 50%),
+    radial-gradient(circle at 92% 50%, #f0f8ff 0%, #f0f8ff 44%, transparent 48%);
+  background-size: 15% 100%, 12% 100%, 18% 100%, 14% 100%, 16% 100%, 13% 100%;
+  background-position: 5% 0, 20% 0, 38% 0, 56% 0, 72% 0, 88% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
+  z-index: 1;
+}
+
+.christmas-btn-red:hover {
+  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%) !important;
+  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
+  transform: translateY(-2px);
+}
+
+/* 버튼 위 눈 효과 - 녹색 버튼용 */
+.christmas-btn-green {
+  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 50%, #165b33 100%) !important;
+  border: none !important;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 15px rgba(22, 91, 51, 0.4);
+}
+
+.christmas-btn-green::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: 
+    radial-gradient(circle at 8% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 22% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 38% 50%, #ffffff 0%, #ffffff 48%, transparent 52%),
+    radial-gradient(circle at 55% 50%, #f0f8ff 0%, #f0f8ff 42%, transparent 47%),
+    radial-gradient(circle at 72% 50%, #ffffff 0%, #ffffff 46%, transparent 50%),
+    radial-gradient(circle at 88% 50%, #f0f8ff 0%, #f0f8ff 44%, transparent 48%);
+  background-size: 16% 100%, 13% 100%, 17% 100%, 15% 100%, 14% 100%, 12% 100%;
+  background-position: 3% 0, 17% 0, 33% 0, 50% 0, 67% 0, 85% 0;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.5));
+  z-index: 1;
+}
+
+.christmas-btn-green:hover {
+  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%) !important;
+  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
+  transform: translateY(-2px);
+}
+
+/* 작은 버튼용 눈 효과 */
+.christmas-btn-small::before {
+  top: -6px !important;
+  height: 8px !important;
+  background: 
+    radial-gradient(circle at 15% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
+    radial-gradient(circle at 45% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
+    radial-gradient(circle at 75% 50%, #ffffff 0%, #ffffff 48%, transparent 52%);
+  background-size: 25% 100%, 20% 100%, 22% 100% !important;
+  background-position: 10% 0, 40% 0, 70% 0 !important;
+}
+
+/* 크리스마스 테마 타이틀 */
+.christmas-title {
+  background: linear-gradient(135deg, #c41e3a 0%, #165b33 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
