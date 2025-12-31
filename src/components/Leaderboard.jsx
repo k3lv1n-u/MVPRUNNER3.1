@@ -115,7 +115,7 @@ const Leaderboard = ({ onBack }) => {
     };
 
     loadLeaderboard();
-  }, [viewMode, currentPage, telegramId]);
+  }, [viewMode, currentPage, telegramId, highScore]);
 
   // viewMode가 변경될 때 currentPage를 1로 리셋
   useEffect(() => {

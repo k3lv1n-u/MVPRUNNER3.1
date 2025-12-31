@@ -76,8 +76,6 @@ const GameCanvas = ({
     },
     runningFrames: null, // JSON에서 로드된 달리기 프레임 데이터
     jumpFrames: null, // JSON에서 로드된 점프 프레임 데이터
-    runningFramesLoaded: false,
-    jumpFramesLoaded: false,
     runningFrameIndex: 0, // 달리기 애니메이션 전용 프레임 인덱스
     runningFrameTime: 0, // 달리기 애니메이션 시간 누적 (밀리초 단위)
     jumpFrameIndex: 0, // 점프 애니메이션 전용 프레임 인덱스
@@ -124,7 +122,6 @@ const GameCanvas = ({
   const bootActiveRef = useRef(new Image());
   const shieldInactiveRef = useRef(new Image());
   const shieldActiveRef = useRef(new Image());
-  const magicSyringeRef = useRef(new Image());
 
 
   const obstacleBaseWidth = 40; // Reverted to original 40px
@@ -567,7 +564,7 @@ const GameCanvas = ({
         window.visualViewport.removeEventListener('resize', handleVisualViewportResize);
       }
     };
-  }, [isGamePlaying, resizeCanvas]);
+  }, [isGamePlaying, isLandscape, isPCWebEnvironment, resizeCanvas]);
 
   // 배경 그리기 (Obsidian Minimalism: Pure black with faint static stars)
   const drawBackground = (ctx, canvas) => {
@@ -625,7 +622,6 @@ const GameCanvas = ({
   const drawDino = (ctx, canvas, deltaTime = 0) => {
     const state = gameStateRef.current;
     const dino = state.dino;
-    const spriteConfig = state.spriteConfig;
 
     // Integer alignment for crisp edges
     let x = Math.floor(dino.x);
@@ -902,7 +898,6 @@ const GameCanvas = ({
   const updateDino = (logicalHeight, frameMultiplier = 1, deltaTime = 0) => {
     const state = gameStateRef.current;
     const dino = state.dino;
-    const spriteConfig = state.spriteConfig;
     if (!dino.onGround) {
       // 프레임 독립적 중력 및 이동: 프레임이 느려지거나 멈춰도 게임 속도가 일정하게 유지됨
       dino.velocityY += dino.gravity * frameMultiplier;
@@ -1861,7 +1856,7 @@ const GameCanvas = ({
     } catch (error) {
       console.error('[GameCanvas] Error using money boost:', error);
     }
-  }, [moneyBoostActive, inventory, telegramId, onInventoryUpdate]);
+  }, [moneyBoostActive, moneyBoostItem, inventory, telegramId, onInventoryUpdate]);
 
   // 속도 저하 효과 타이머
   useEffect(() => {

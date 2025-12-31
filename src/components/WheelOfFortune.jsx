@@ -57,7 +57,6 @@ const WheelOfFortune = ({ onBack, onWin, telegramId, initialPromoCode = null }) 
           const convertedSegments = config.segments.map(segment => {
             // 보라색 계열 색상 감지 및 변환
             const purpleColors = ['#4a1a6b', '#3d1a5c', '#2e1a4d', '#1f1a3e', '#1a1a3e'];
-            const purpleGradients = [['#2d0f42', '#5a2378'], ['#25103a', '#4d2569'], ['#1a0f2e', '#3d2560'], ['#0f0a22', '#2d2555'], ['#0a0a22', '#252555']];
             
             let newColor = segment.color;
             let newGradient = segment.gradient;

@@ -30,14 +30,10 @@ document.addEventListener('selectstart', (e) => {
 
 // 터치 이벤트로 이미지 길게 누르기 방지
 let touchStartTime = 0;
-let touchStartX = 0;
-let touchStartY = 0;
 
 document.addEventListener('touchstart', (e) => {
   if (e.target.tagName === 'IMG') {
     touchStartTime = Date.now();
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
   }
 }, { passive: true });
 

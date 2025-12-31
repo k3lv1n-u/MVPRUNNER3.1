@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import api from '../services/api';
 import soundManager from '../utils/soundManager';
 import './Shop.css';
@@ -49,12 +49,7 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
     };
   }, []);
 
-  useEffect(() => {
-    loadPromoCodes();
-    loadInventory();
-  }, []);
-
-  const loadInventory = async () => {
+  const loadInventory = useCallback(async () => {
     if (!telegramId) return;
     try {
       const userInventory = await api.getUserInventory(parseInt(telegramId));
@@ -62,9 +57,9 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
     } catch (err) {
       console.error('Error loading inventory:', err);
     }
-  };
+  }, [telegramId]);
 
-  const loadPromoCodes = async () => {
+  const loadPromoCodes = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -80,7 +75,12 @@ const Shop = ({ onBack, balance, onBalanceUpdate, telegramId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadPromoCodes();
+    loadInventory();
+  }, [loadPromoCodes, loadInventory]);
 
   const handlePurchase = async (codeId, price) => {
     if (!telegramId) {
