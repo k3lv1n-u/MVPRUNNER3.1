@@ -12,84 +12,50 @@
 }
 
 :root {
-  --bg-primary: #050507;
-  --bg-secondary: #0a0a0c;
-  --bg-tertiary: #0f0f12;
-  --border-color: rgba(255, 255, 255, 0.15);
-  --border-color-bright: rgba(255, 255, 255, 0.3);
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.75);
-  --text-tertiary: rgba(255, 255, 255, 0.5);
-  --accent-cyan: #00ff9d;
-  --accent-gray: #333333;
-  --star-bright: rgba(255, 255, 255, 0.95);
-  --star-medium: rgba(255, 255, 255, 0.7);
-  --star-dim: rgba(255, 255, 255, 0.5);
+  --bg-primary: #fff5f7;
+  --bg-secondary: #ffe4e9;
+  --bg-tertiary: #ffd4dc;
+  --border-color: rgba(255, 179, 198, 0.3);
+  --border-color-bright: rgba(255, 179, 198, 0.6);
+  --text-primary: #d63384;
+  --text-secondary: rgba(214, 51, 132, 0.8);
+  --text-tertiary: rgba(139, 90, 125, 0.7);
+  --accent-cyan: #ff6b9d;
+  --accent-gray: #ffb3c6;
+  --star-bright: rgba(255, 182, 193, 0.4);
+  --star-medium: rgba(255, 192, 203, 0.3);
+  --star-dim: rgba(255, 228, 225, 0.2);
 }
 
-/* 선명한 밤하늘 배경 - 깊이감 있는 별들 */
+/* 밝고 화사한 설날 배경 - 2026 새해 */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg-primary);
+  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
 }
 
-/* 밝은 별들 레이어 (큰 별) */
+/* 2026 새해 워터마크 */
 body::before {
-  content: '';
+  content: '2026';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    /* 밝은 큰 별들 */
-    radial-gradient(2px 2px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(2px 2px at 28% 42%, rgba(255, 255, 255, 0.85), transparent),
-    radial-gradient(2px 2px at 45% 12%, rgba(255, 255, 255, 0.95), transparent),
-    radial-gradient(2px 2px at 62% 68%, rgba(255, 255, 255, 0.88), transparent),
-    radial-gradient(2px 2px at 78% 32%, rgba(255, 255, 255, 0.92), transparent),
-    radial-gradient(2px 2px at 88% 75%, rgba(255, 255, 255, 0.87), transparent),
-    radial-gradient(2px 2px at 35% 88%, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(2px 2px at 55% 55%, rgba(255, 255, 255, 0.93), transparent),
-    radial-gradient(2px 2px at 8% 92%, rgba(255, 255, 255, 0.85), transparent),
-    radial-gradient(2px 2px at 92% 8%, rgba(255, 255, 255, 0.91), transparent),
-    radial-gradient(2px 2px at 18% 65%, rgba(255, 255, 255, 0.89), transparent),
-    radial-gradient(2px 2px at 72% 22%, rgba(255, 255, 255, 0.94), transparent),
-    /* 중간 크기 별들 */
-    radial-gradient(1px 1px at 22% 28%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 38% 52%, rgba(255, 255, 255, 0.65), transparent),
-    radial-gradient(1px 1px at 52% 18%, rgba(255, 255, 255, 0.75), transparent),
-    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.68), transparent),
-    radial-gradient(1px 1px at 82% 38%, rgba(255, 255, 255, 0.72), transparent),
-    radial-gradient(1px 1px at 15% 82%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 48% 48%, rgba(255, 255, 255, 0.73), transparent),
-    radial-gradient(1px 1px at 75% 15%, rgba(255, 255, 255, 0.71), transparent),
-    radial-gradient(1px 1px at 32% 78%, rgba(255, 255, 255, 0.69), transparent),
-    radial-gradient(1px 1px at 58% 62%, rgba(255, 255, 255, 0.74), transparent),
-    /* 작은 별들 */
-    radial-gradient(0.5px 0.5px at 25% 35%, rgba(255, 255, 255, 0.5), transparent),
-    radial-gradient(0.5px 0.5px at 42% 58%, rgba(255, 255, 255, 0.45), transparent),
-    radial-gradient(0.5px 0.5px at 58% 25%, rgba(255, 255, 255, 0.55), transparent),
-    radial-gradient(0.5px 0.5px at 72% 68%, rgba(255, 255, 255, 0.48), transparent),
-    radial-gradient(0.5px 0.5px at 18% 72%, rgba(255, 255, 255, 0.52), transparent),
-    radial-gradient(0.5px 0.5px at 85% 42%, rgba(255, 255, 255, 0.5), transparent),
-    radial-gradient(0.5px 0.5px at 35% 15%, rgba(255, 255, 255, 0.47), transparent),
-    radial-gradient(0.5px 0.5px at 65% 85%, rgba(255, 255, 255, 0.53), transparent),
-    radial-gradient(0.5px 0.5px at 8% 48%, rgba(255, 255, 255, 0.46), transparent),
-    radial-gradient(0.5px 0.5px at 95% 28%, rgba(255, 255, 255, 0.51), transparent),
-    radial-gradient(0.5px 0.5px at 48% 92%, rgba(255, 255, 255, 0.49), transparent),
-    radial-gradient(0.5px 0.5px at 28% 8%, rgba(255, 255, 255, 0.54), transparent);
-  background-size: 100% 100%;
-  background-position: 0% 0%;
-  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, rgba(255, 179, 198, 0.08) 0%, rgba(255, 142, 171, 0.08) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   z-index: 0;
+  pointer-events: none;
+  letter-spacing: 2rem;
 }
 
-/* 미묘한 은하수 효과 */
+/* 설날 꽃잎 장식 효과 */
 body::after {
   content: '';
   position: fixed;
@@ -97,16 +63,16 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(135deg, 
-      transparent 0%, 
-      rgba(255, 255, 255, 0.02) 20%, 
-      rgba(255, 255, 255, 0.03) 40%, 
-      rgba(255, 255, 255, 0.02) 60%, 
-      transparent 100%);
+  background-image: 
+    /* 꽃잎 장식들 */
+    radial-gradient(circle at 15% 20%, rgba(255, 179, 198, 0.15), transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(255, 142, 171, 0.12), transparent 55%),
+    radial-gradient(circle at 25% 80%, rgba(255, 192, 203, 0.18), transparent 65%),
+    radial-gradient(circle at 75% 70%, rgba(255, 179, 198, 0.14), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(255, 228, 225, 0.1), transparent 70%);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* 로그인 화면 스타일 */
@@ -298,32 +264,38 @@ body::after {
 .login-button {
   width: 100%;
   padding: 12px;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
+  border: none;
+  border-radius: 15px;
+  color: #d63384;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 179, 198, 0.4);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
   transition: all 0.2s;
   font-family: 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
 .login-button:hover {
-  background: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #ffc8d7 0%, #ffa3bf 100%);
+  box-shadow: 0 6px 20px rgba(255, 179, 198, 0.6);
+  transform: translateY(-2px);
 }
 
 .login-button:active {
-  background: #0a0a0a;
+  background: linear-gradient(135deg, #ff8fab 0%, #ff6b9d 100%);
+  transform: translateY(0);
 }
 
 .login-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: #000000;
+  background: #e0e0e0;
+  color: #999999;
 }
 
 .login-footer {

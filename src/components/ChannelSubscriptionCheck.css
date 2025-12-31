@@ -29,11 +29,13 @@
   min-height: auto;
   margin: auto;
   padding: 30px 20px;
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #ffb3c6;
+  border-radius: 25px !important;
   animation: fadeIn 0.5s ease-in;
   box-sizing: border-box;
+  box-shadow: 0 8px 32px rgba(255, 179, 198, 0.4);
+  backdrop-filter: blur(10px);
 }
 
 @keyframes fadeIn {
@@ -90,15 +92,30 @@
 .channel-check-title {
   font-size: 28px;
   font-weight: bold;
-  color: #ffffff;
+  color: #d63384;
   margin: 0 0 10px 0;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(255, 182, 193, 0.3);
+}
+
+/* 2026 새해 메시지 추가 */
+.channel-check-title::after {
+  content: '2026';
+  display: block;
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ffa5c9 50%, #d63384 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 10px;
+  letter-spacing: 4px;
 }
 
 .channel-check-subtitle {
   font-size: 16px;
-  color: #888888;
+  color: #8b5a7d;
   margin: 0;
   line-height: 1.5;
 }
@@ -195,13 +212,15 @@
 
 .channel-join-btn {
   padding: 10px 20px;
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  border-radius: 0 !important;
-  color: #000000;
+  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
+  border: none;
+  border-radius: 15px !important;
+  color: #d63384;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 3px 10px rgba(255, 179, 198, 0.4);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
   flex-shrink: 0;
   white-space: nowrap;
@@ -209,8 +228,9 @@
 }
 
 .channel-join-btn:hover {
-  background: #cccccc;
-  border-color: #cccccc;
+  background: linear-gradient(135deg, #ffc8d7 0%, #ffa3bf 100%);
+  box-shadow: 0 5px 15px rgba(255, 179, 198, 0.6);
+  transform: translateY(-2px);
 }
 
 .channel-subscribed-label {
@@ -236,13 +256,15 @@
 
 .channel-verify-btn {
   padding: 15px 30px;
-  background: #000000;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
-  color: #ffffff;
+  background: linear-gradient(135deg, #b8e6d5 0%, #95d9c3 100%);
+  border: none;
+  border-radius: 20px !important;
+  color: #2d6a4f;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(184, 230, 213, 0.5);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease;
   min-width: 250px;
   text-transform: uppercase;
@@ -250,21 +272,21 @@
 }
 
 .channel-verify-btn:hover:not(:disabled) {
-  background: #222222;
-  border-color: #ffffff;
+  background: linear-gradient(135deg, #c9f0e1 0%, #a8e4d2 100%);
+  box-shadow: 0 6px 20px rgba(184, 230, 213, 0.7);
   transform: translateY(-2px);
 }
 
 .channel-verify-btn:active:not(:disabled) {
   transform: translateY(0);
-  background: #333333;
+  background: linear-gradient(135deg, #a8e4d2 0%, #7dcdb8 100%);
 }
 
 .channel-verify-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: #444444;
-  color: #666666;
+  background: #e0e0e0;
+  color: #999999;
 }
 
 .channel-check-loading {
