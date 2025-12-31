@@ -14,7 +14,8 @@
 
 .christmas-snowflake {
   position: absolute;
-  background: linear-gradient(135deg, #ffb3d9 0%, #ffc6e3 100%);
+  background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
+  box-shadow: 0 0 5px rgba(161, 196, 253, 0.8);
   border-radius: 50%;
   opacity: 0;
   animation: christmasSnowfall linear infinite;
@@ -25,12 +26,15 @@
     transform: translateY(-10vh) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 0.6;
   }
+
   90% {
     opacity: 0.6;
   }
+
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -39,14 +43,14 @@
 
 /* 버튼 스타일 - 밝은 핑크/복숭아 톤 */
 .christmas-btn-red {
-  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 50%, #ffb3c6 100%) !important;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%) !important;
   border: none !important;
   border-radius: 20px !important;
   /* 둥근 버튼 */
   position: relative;
   overflow: visible;
-  box-shadow: 0 4px 15px rgba(255, 179, 198, 0.5);
-  color: #d63384 !important;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  color: #ffffff !important;
   font-weight: 700;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
 }
@@ -58,16 +62,16 @@
   left: -2px;
   right: -2px;
   height: 12px;
-  background: 
-    radial-gradient(ellipse 100px 15px at 50% 0%, #ffe4f0 0%, #fff0f7 40%, rgba(255, 240, 247, 0.6) 70%, transparent 100%);
-  filter: drop-shadow(0 2px 4px rgba(255, 182, 193, 0.5));
+  background:
+    radial-gradient(ellipse 100px 15px at 50% 0%, #ffffff 0%, #fff0f5 40%, rgba(255, 255, 255, 0.3) 70%, transparent 100%);
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2));
   z-index: 1;
   border-radius: 20px 20px 0 0;
 }
 
 .christmas-btn-red:hover {
-  background: linear-gradient(135deg, #ffc8d7 0%, #ffa3bf 50%, #ffc8d7 100%) !important;
-  box-shadow: 0 6px 20px rgba(255, 179, 198, 0.7);
+  background: linear-gradient(135deg, #ff8787 0%, #ff9f72 100%) !important;
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
   transform: translateY(-2px);
 }
 
@@ -92,7 +96,7 @@
   left: -2px;
   right: -2px;
   height: 12px;
-  background: 
+  background:
     radial-gradient(ellipse 100px 15px at 50% 0%, #e0f5ed 0%, #ebf9f3 40%, rgba(235, 249, 243, 0.6) 70%, transparent 100%);
   filter: drop-shadow(0 2px 4px rgba(149, 217, 195, 0.5));
   z-index: 1;
@@ -109,14 +113,14 @@
 .christmas-btn-small::before {
   top: -4px !important;
   height: 10px !important;
-  background: 
+  background:
     radial-gradient(ellipse 80px 12px at 50% 0%, #ffe4f0 0%, #fff0f7 40%, rgba(255, 240, 247, 0.6) 70%, transparent 100%) !important;
   border-radius: 15px 15px 0 0;
 }
 
 /* 설날 테마 타이틀 */
 .christmas-title {
-  background: linear-gradient(135deg, #ff6b9d 0%, #ffa5c9 50%, #ffd1e0 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFD93D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

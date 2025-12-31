@@ -31,13 +31,14 @@ body {
   left: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  /* White Winter & Warm Christmas Theme */
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   background-image:
-    radial-gradient(rgba(255, 182, 193, 0.1) 1px, transparent 1px),
-    radial-gradient(rgba(255, 182, 193, 0.1) 1px, transparent 1px);
-  background-size: 550px 550px, 350px 350px;
-  background-position: 0 0, 200px 200px;
-  color: #ffffff;
+    radial-gradient(rgba(173, 216, 230, 0.2) 1px, transparent 1px),
+    radial-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 30px 30px;
+  color: #333333; /* Darker text for better contrast on light background */
 }
 
 /* 모든 요소의 border-radius 강제 제거 */
