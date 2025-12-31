@@ -17,9 +17,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #111111;
-    border: 1px solid #333333;
-    border-radius: 0 !important;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #C3CFE2;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 40px rgba(161, 196, 253, 0.3);
+    backdrop-filter: blur(10px);
     width: 90%;
     max-width: 400px;
     max-height: 80vh;
@@ -34,8 +36,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    border-bottom: 1px solid #333333;
-    background: #000000;
+    border-bottom: 1px solid #E0E0E0;
+    background: #F5F7FA;
 }
 
 .referral-header h3 {
@@ -81,9 +83,9 @@
 
 .info-item {
     flex: 1;
-    background: #111111;
-    border: 1px solid #333333;
-    border-radius: 0 !important;
+    background: #F5F7FA;
+    border: 1px solid #E0E0E0;
+    border-radius: 15px !important;
     padding: 12px;
     display: flex;
     align-items: center;
@@ -127,9 +129,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #111111;
-    border: 1px solid #333333;
-    border-radius: 0 !important;
+    background: #ffffff;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px !important;
     padding: 12px;
 }
 
@@ -143,9 +145,9 @@
 }
 
 .copy-code-btn {
-    background: #222222;
-    border: 1px solid #333333;
-    border-radius: 0 !important;
+    background: #F5F7FA;
+    border: 1px solid #cccccc;
+    border-radius: 10px !important;
     width: 36px;
     height: 36px;
     display: flex;
@@ -158,8 +160,8 @@
 }
 
 .copy-code-btn:hover {
-    background: #333333;
-    border-color: #ffffff;
+    background: #ffffff;
+    border-color: #999999;
 }
 
 .referral-link-section {
@@ -180,9 +182,9 @@
 }
 
 .link-input {
-    background: #111111;
-    border: 1px solid #333333;
-    border-radius: 0 !important;
+    background: #ffffff;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px !important;
     padding: 10px;
     color: #333333;
     font-size: 12px;
@@ -193,8 +195,8 @@
 
 .link-input:focus {
     outline: none;
-    border-color: #ffffff;
-    background: #000000;
+    border-color: #999999;
+    background: #f8f8f8;
 }
 
 .copy-link-btn {
@@ -202,7 +204,7 @@
     border: 1px solid #333333;
     border-radius: 0 !important;
     padding: 10px;
-    color: #ffffff;
+    color: #5d6d7e;
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
@@ -219,7 +221,7 @@
     width: 100%;
     background: #111111;
     border: 1px solid #333333;
-    border-radius: 0 !important;
+    border-radius: 15px !important;
     padding: 14px;
     color: #ffffff;
     font-size: 15px;
@@ -236,7 +238,7 @@
 
 .share-telegram-btn:hover {
     background: #222222;
-    border-color: #ffffff;
+    border: none;
     transform: translateY(-2px);
 }
 
@@ -262,7 +264,7 @@
 }
 
 .referral-content::-webkit-scrollbar-track {
-    background: #000000;
+    background: #ffffff;
 }
 
 .referral-content::-webkit-scrollbar-thumb {

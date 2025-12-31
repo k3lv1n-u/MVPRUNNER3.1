@@ -141,8 +141,9 @@
   z-index: 10;
   box-sizing: border-box;
   margin-top: env(safe-area-inset-top, 0);
-  background: #000000;
-  border-bottom: 1px solid #222222;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #E0E0E0;
+  backdrop-filter: blur(10px);
 }
 
 .header-left {
@@ -157,8 +158,8 @@
   align-items: center;
   gap: 10px;
   padding: 6px 12px;
-  background: #111111;
-  border: 1px solid #333333;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #E0E0E0;
   border-radius: 0 !important;
   min-width: 0;
 }
@@ -170,8 +171,8 @@
   /* User requested round avatar */
   overflow: hidden;
   flex-shrink: 0;
-  border: 1px solid #333333;
-  background: #000000;
+  border: 2px solid #E0E0E0;
+  background: #F5F7FA;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,7 +193,7 @@
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
-  background: #222222;
+  background: #E0E0E0;
 }
 
 .telegram-details {
@@ -203,7 +204,7 @@
 }
 
 .telegram-handle {
-  color: #00ffff;
+  color: #2D6A4F;
   /* Cyan username */
   font-size: 13px;
   font-weight: 600;
@@ -326,7 +327,7 @@
 }
 
 .balance-value {
-  color: #ffffff;
+  color: #333333;
   font-weight: 700;
   line-height: 1;
   font-size: 13px;

@@ -207,7 +207,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000000;
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -231,7 +231,7 @@
   position: absolute;
   width: 2px;
   height: 2px;
-  background: #ffffff;
+  background: #FDB813;
   border-radius: 50%;
   animation: twinkle 3s infinite;
 }
@@ -254,10 +254,12 @@
   position: relative;
   z-index: 10;
   text-align: center;
-  color: #ffffff;
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  color: #333333;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #C3CFE2;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 40px rgba(161, 196, 253, 0.3);
+  backdrop-filter: blur(10px);
   padding: 40px 30px;
   min-width: 280px;
   max-width: 90%;
@@ -279,7 +281,7 @@
 .loading-title {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: #333333;
   margin-bottom: 30px;
   text-transform: uppercase;
   letter-spacing: 2px;
