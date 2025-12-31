@@ -188,47 +188,22 @@ const GameCanvas = ({
       }
     };
 
-    // JSON 프레임 데이터 로드
-    fetch('/running.json')
-      .then(response => response.json())
-      .then(data => {
-        gameStateRef.current.runningFrames = data;
-        gameStateRef.current.spriteConfig.totalFrames = data.length;
+    // GIF animation doesn't need JSON frame data
+    gameStateRef.current.runningFramesLoaded = true;
+    gameStateRef.current.jumpFramesLoaded = true;
+    checkImagesLoaded();
 
-        // JSON 데이터 저장 (originalX/originalY는 렌더링에 사용하지 않음)
-        // x, y, width, height만 drawImage 소스 영역 지정에 사용
-        // 기준 프레임 크기는 논리적 캐릭터 크기(dino.width)를 기준으로 함
-
-        gameStateRef.current.runningFramesLoaded = true;
-        checkImagesLoaded();
-      })
-      .catch(error => {
-        console.error('Failed to load running.json:', error);
-        gameStateRef.current.runningFramesLoaded = true; // 에러가 있어도 진행
-        checkImagesLoaded();
-      });
-
-    fetch('/jumpjson.json')
-      .then(response => response.json())
-      .then(data => {
-        gameStateRef.current.jumpFrames = data;
-
-        // JSON 데이터 저장 (originalX/originalY는 렌더링에 사용하지 않음)
-        // x, y, width, height만 drawImage 소스 영역 지정에 사용
-        // 기준 프레임 크기는 논리적 캐릭터 크기(dino.width)를 기준으로 함
-
-        gameStateRef.current.jumpFramesLoaded = true;
-        checkImagesLoaded();
-      })
-      .catch(error => {
-        console.error('Failed to load jumpjson.json:', error);
-        gameStateRef.current.jumpFramesLoaded = true; // 에러가 있어도 진행
-        checkImagesLoaded();
-      });
-
-    loadImageWithProgress(characterSprite, 'running', () => {
+    // Load GIF character animation
+    characterSprite.onload = () => {
       gameStateRef.current.spriteLoaded = true;
-    });
+      checkImagesLoaded();
+    };
+    characterSprite.onerror = () => {
+      console.error('Character GIF를 로드할 수 없습니다.');
+      gameStateRef.current.spriteLoaded = true;
+      checkImagesLoaded();
+    };
+    characterSprite.src = '/sprite-256px-36 (2).gif';
 
     loadImageWithProgress(idleSprite, 'idle', () => {
       gameStateRef.current.idleLoaded = true;
@@ -649,169 +624,39 @@ const GameCanvas = ({
       dino.y = y;
     }
 
-    // 스프라이트 스케일 상수 (각 프레임의 실제 크기를 유지하면서 조정)
-    const scale = 0.35;
-
-    // 발 위치 고정점 (dino.width/height는 충돌 감지용 히트박스)
-    // baseX: 발의 x 좌표 (캐릭터 중앙)
-    // baseY: 발의 y 좌표 (캐릭터 하단)
-    const baseX = x + w / 2;
-    let baseY = y + h;
-
-    if (!dino.onGround) {
-      // 점프 애니메이션 (점프 시간 동안 한 번만 재생)
-      if (state.jumpLoaded && state.jumpFrames && jumpSpriteRef.current.complete && jumpSpriteRef.current.naturalHeight !== 0) {
-        // 점프 시작 시간이 없으면 현재 시간으로 설정
-        if (state.jumpStartTime === 0) {
-          state.jumpStartTime = Date.now();
-        }
-
-        // 점프 물리 계산: 최고점까지의 시간
-        const framesToApex = Math.abs(state.dino.jumpPower / state.dino.gravity);
-        const totalJumpFrames = framesToApex * 2; // 상승 + 하강
-        const totalJumpTime = totalJumpFrames * 16.67; // 밀리초 (60fps 가정)
-
-        // 점프 경과 시간
-        const jumpElapsed = Date.now() - state.jumpStartTime;
-        const jumpProgress = Math.min(jumpElapsed / totalJumpTime, 1.0); // 0.0 ~ 1.0
-
-        // 점프 진행도에 따라 프레임 인덱스 계산 (점프 시간 동안 모든 프레임 한 번 재생)
-        const totalFrames = state.jumpFrames.length;
-        const frameIndex = Math.min(
-          Math.floor(jumpProgress * totalFrames),
-          totalFrames - 1
-        );
-
-        const jumpFrame = state.jumpFrames[frameIndex];
-        if (jumpFrame) {
-          // 각 프레임의 실제 크기 사용
-          const frameWidth = jumpFrame.width * scale;
-          const frameHeight = jumpFrame.height * scale;
-
-          // 발 위치(baseX, baseY) 기준으로 하단 중앙 정렬
-          // Center the sprite horizontally on the hit box
-          const renderX = baseX - (frameWidth / 2);
-          // Align bottom of sprite to bottom of hit box
-          const renderY = baseY - frameHeight;
-
-          // 픽셀 스프라이트 선명도 유지: 모든 좌표 정수화
-          ctx.drawImage(
-            jumpSpriteRef.current,
-            jumpFrame.x, jumpFrame.y,  // JSON의 x, y: 소스 영역 지정에만 사용
-            jumpFrame.width, jumpFrame.height,  // JSON의 width, height: 소스 영역 지정에만 사용
-            Math.floor(renderX), Math.floor(renderY),
-            Math.floor(frameWidth), Math.floor(frameHeight)
-          );
-
-          // 프레임 인덱스 업데이트 (점프 진행도 기반)
-          state.jumpFrameIndex = frameIndex;
-        } else {
-          ctx.fillStyle = '#333';
-          ctx.fillRect(x, y, w, h);
-        }
-      } else {
-        ctx.fillStyle = '#333';
-        ctx.fillRect(x, y, w, h);
-      }
+    // GIF를 단순하게 그리기 - 브라우저가 자동으로 애니메이션 처리
+    if (state.spriteLoaded && characterSpriteRef.current.complete && characterSpriteRef.current.naturalHeight !== 0) {
+      // GIF의 원본 크기를 가져와서 적절하게 스케일링
+      const gifWidth = characterSpriteRef.current.naturalWidth;
+      const gifHeight = characterSpriteRef.current.naturalHeight;
+      
+      // 적절한 표시 크기 (원본 크기를 유지하면서 게임에 맞게 조정)
+      const displayWidth = 100;  // 적절한 크기로 조정 가능
+      const displayHeight = (gifHeight / gifWidth) * displayWidth;
+      
+      // 캐릭터를 중앙 하단에 정렬
+      const renderX = x + (w - displayWidth) / 2;
+      const renderY = y + h - displayHeight;
+      
+      // GIF 그리기 (브라우저가 자동으로 애니메이션 재생)
+      ctx.drawImage(
+        characterSpriteRef.current,
+        Math.floor(renderX),
+        Math.floor(renderY),
+        Math.floor(displayWidth),
+        Math.floor(displayHeight)
+      );
     } else {
-      if (gameRunning) {
-        // 달리기 애니메이션
-        if (state.spriteLoaded && state.runningFrames && characterSpriteRef.current.complete && characterSpriteRef.current.naturalHeight !== 0) {
-          const runningFrame = state.runningFrames[state.runningFrameIndex % state.runningFrames.length];
-          if (runningFrame) {
-            // 각 프레임의 실제 크기 사용
-            const frameWidth = runningFrame.width * scale;
-            const frameHeight = runningFrame.height * scale;
-
-            // 발 위치(baseX, baseY) 기준으로 하단 중앙 정렬
-            // Center the sprite horizontally on the hit box
-            const renderX = baseX - (frameWidth / 2);
-            // Align bottom of sprite to bottom of hit box
-            const renderY = baseY - frameHeight;
-
-            // 픽셀 스프라이트 선명도 유지: 모든 좌표 정수화
-            ctx.drawImage(
-              characterSpriteRef.current,
-              runningFrame.x, runningFrame.y,  // JSON의 x, y: 소스 영역 지정에만 사용
-              runningFrame.width, runningFrame.height,  // JSON의 width, height: 소스 영역 지정에만 사용
-              Math.floor(renderX), Math.floor(renderY),
-              Math.floor(frameWidth), Math.floor(frameHeight)
-            );
-
-            const speedMultiplier = state.speedReductionActive ? 0.7 : (state.magicSyringeActive ? 1.5 : 1.0);
-            const effectiveGameSpeed = state.gameSpeed * speedMultiplier;
-            // 프레임 독립적 애니메이션: 게임 속도에 따라 애니메이션 속도 조절 (밀리초 단위)
-            // 기본 프레임 딜레이: 50ms (60fps 기준 약 3프레임)
-            const dynamicFrameDelayMs = Math.max(16.67, 50 / effectiveGameSpeed);
-
-            state.runningFrameTime += deltaTime;
-            if (state.runningFrameTime >= dynamicFrameDelayMs) {
-              state.runningFrameTime = 0;
-              state.runningFrameIndex = (state.runningFrameIndex + 1) % state.runningFrames.length;
-            }
-          } else {
-            ctx.fillStyle = '#333';
-            ctx.fillRect(x, y, w, h);
-          }
-        } else {
-          ctx.fillStyle = '#333';
-          ctx.fillRect(x, y, w, h);
-        }
-      } else {
-        // Idle state: Try idle image first, then fallback to first running frame
-        if (state.idleLoaded && idleSpriteRef.current.complete && idleSpriteRef.current.naturalHeight !== 0) {
-          // Idle image also uses bottom-center anchor
-          const baseWidth = w;
-          const baseHeight = h;
-          const idleWidth = idleSpriteRef.current.naturalWidth || baseWidth;
-          const idleHeight = idleSpriteRef.current.naturalHeight || baseHeight;
-          const idleScale = baseWidth / idleWidth;
-          const destW = idleWidth * idleScale;
-          const destH = idleHeight * idleScale;
-          const destX = x + (baseWidth - destW) / 2;
-          const destY = y + (baseHeight - destH);
-          ctx.drawImage(
-            idleSpriteRef.current,
-            Math.round(destX), Math.round(destY), Math.round(destW), Math.round(destH)
-          );
-        } else if (state.spriteLoaded && state.runningFrames && characterSpriteRef.current.complete && characterSpriteRef.current.naturalHeight !== 0) {
-          // Fallback to first frame of running sprite
-          const firstFrame = state.runningFrames[0];
-          if (firstFrame) {
-            // 각 프레임의 실제 크기 사용
-            const frameWidth = firstFrame.width * scale;
-            const frameHeight = firstFrame.height * scale;
-
-            // 첫 프레임 기준으로 오프셋 계산 (자기 자신이므로 0)
-            const referenceFrame = state.runningFrames[0];
-            if (referenceFrame) {
-              const offsetX = (firstFrame.originalX - referenceFrame.originalX) * scale;
-              const offsetY = (firstFrame.originalY - referenceFrame.originalY) * scale;
-
-              // 발 위치 기준으로 렌더링 위치 계산
-              const renderX = baseX - offsetX;
-              const renderY = baseY - frameHeight + offsetY;
-
-              // 픽셀 스프라이트 선명도 유지: 모든 좌표 정수화
-              ctx.drawImage(
-                characterSpriteRef.current,
-                firstFrame.x, firstFrame.y,  // JSON의 x, y: 소스 영역 지정에만 사용
-                firstFrame.width, firstFrame.height,  // JSON의 width, height: 소스 영역 지정에만 사용
-                Math.round(renderX), Math.round(renderY),
-                Math.round(frameWidth), Math.round(frameHeight)
-              );
-            }
-          } else {
-            ctx.fillStyle = '#333';
-            ctx.fillRect(x, y, w, h);
-          }
-        } else {
-          ctx.fillStyle = '#333';
-          ctx.fillRect(x, y, w, h);
-        }
-      }
+      // Fallback: 이미지 로드 전 플레이스홀더
+      ctx.fillStyle = '#333';
+      ctx.fillRect(x, y, w, h);
     }
+
+    // 디버그용 히트박스 (필요시 주석 해제)
+    // ctx.strokeStyle = 'red';
+    // ctx.strokeRect(x, y, w, h);
   };
+
 
   const drawObstacles = (ctx) => {
     const state = gameStateRef.current;
