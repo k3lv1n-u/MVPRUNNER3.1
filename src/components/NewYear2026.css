@@ -1,0 +1,272 @@
+/* 새해 2026 축하 화면 */
+.new-year-2026-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: fadeIn 1s ease-in;
+}
+
+.new-year-2026-screen.fade-out {
+  animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 배경 그라데이션 */
+.new-year-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 25%,
+    #f093fb 50%,
+    #4facfe 75%,
+    #00f2fe 100%
+  );
+  animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(30deg);
+  }
+}
+
+/* 불꽃놀이 효과 */
+.fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: explode 1.5s ease-out infinite;
+}
+
+@keyframes explode {
+  0% {
+    box-shadow: 
+      0 0 0 0 #FFD700,
+      0 0 0 0 #FF6B6B,
+      0 0 0 0 #4ECDC4,
+      0 0 0 0 #95E1D3;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 
+      0 -80px 40px -8px transparent,
+      80px 0 40px -8px transparent,
+      0 80px 40px -8px transparent,
+      -80px 0 40px -8px transparent,
+      56px -56px 40px -8px transparent,
+      56px 56px 40px -8px transparent,
+      -56px 56px 40px -8px transparent,
+      -56px -56px 40px -8px transparent;
+    opacity: 0;
+  }
+}
+
+/* 메인 콘텐츠 */
+.new-year-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  animation: scaleIn 1s ease-out;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 연도 숫자 */
+.year-number {
+  font-size: clamp(80px, 20vw, 150px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 80px rgba(255, 215, 0, 0.8);
+  animation: glow 2s ease-in-out infinite alternate;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) 
+            drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
+  }
+  to {
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 1)) 
+            drop-shadow(0 0 60px rgba(255, 215, 0, 0.8));
+  }
+}
+
+/* 타이틀 텍스트 */
+.new-year-title {
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 900;
+  color: #FFFFFF;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.6),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  animation: slideUp 1s ease-out 0.3s backwards;
+}
+
+.new-year-subtitle {
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 700;
+  color: #FFE6A7;
+  text-shadow: 
+    0 0 10px rgba(255, 230, 167, 0.8),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  animation: slideUp 1s ease-out 0.5s backwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 아이콘들 */
+.celebration-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  animation: slideUp 1s ease-out 0.7s backwards;
+}
+
+.celebration-icon {
+  font-size: clamp(40px, 8vw, 60px);
+  animation: bounce 1s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.celebration-icon:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.celebration-icon:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.celebration-icon:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(-10deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+/* 떨어지는 색종이 */
+.confetti-container {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0.3;
+  }
+}
+
+/* 모바일 최적화 */
+@media (max-width: 480px) {
+  .year-number {
+    letter-spacing: 5px;
+  }
+  
+  .celebration-icons {
+    gap: 20px;
+  }
+  
+  .firework {
+    width: 3px;
+    height: 3px;
+  }
+}
+

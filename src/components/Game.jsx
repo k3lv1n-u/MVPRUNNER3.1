@@ -7,6 +7,7 @@ import Settings from './Settings';
 import GameOver from './GameOver';
 import WheelOfFortune from './WheelOfFortune';
 import Welcome from './Welcome';
+import NewYear2026 from './NewYear2026';
 import News from './News';
 import Shop from './Shop';
 import PromoCodeReceiver from './PromoCodeReceiver';
@@ -409,7 +410,7 @@ const Game = () => {
     }
 
     setUserInitialized(true);
-    setCurrentView('menu');
+    setCurrentView('newyear'); // 새해 축하 씬 먼저 표시
   }, []);
 
   // 계정 차단 핸들러
@@ -433,6 +434,10 @@ const Game = () => {
 
   if (currentView === 'welcome' || !userInitialized) {
     return <Welcome onComplete={handleWelcomeComplete} />;
+  }
+
+  if (currentView === 'newyear') {
+    return <NewYear2026 onComplete={() => setCurrentView('menu')} />;
   }
 
   if (currentView === 'promo-code') {

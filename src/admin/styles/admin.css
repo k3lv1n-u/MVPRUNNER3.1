@@ -2,7 +2,8 @@
 @import './admin-inline.css';
 
 /* Admin 패널은 메인 게임 CSS의 overflow:hidden을 덮어 써야 함 */
-html, body {
+html,
+body {
   overflow-y: auto !important;
   overflow-x: hidden;
   position: relative !important;
@@ -18,19 +19,20 @@ html, body {
 }
 
 :root {
-  --bg-primary: #fff5f7;
-  --bg-secondary: #ffe4e9;
-  --bg-tertiary: #ffd4dc;
-  --border-color: rgba(255, 179, 198, 0.3);
-  --border-color-bright: rgba(255, 179, 198, 0.6);
-  --text-primary: #d63384;
-  --text-secondary: rgba(214, 51, 132, 0.8);
-  --text-tertiary: rgba(139, 90, 125, 0.7);
-  --accent-cyan: #ff6b9d;
-  --accent-gray: #ffb3c6;
-  --star-bright: rgba(255, 182, 193, 0.4);
-  --star-medium: rgba(255, 192, 203, 0.3);
-  --star-dim: rgba(255, 228, 225, 0.2);
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F0F8FF;
+  --bg-tertiary: #E3FDFD;
+  --border-color: #C3CFE2;
+  --border-color-bright: #A1C4FD;
+  --text-primary: #333333;
+  --text-secondary: #5d6d7e;
+  --text-tertiary: #999999;
+  --accent-cyan: #A1C4FD;
+  --accent-gray: #E0E0E0;
+  --accent-warm: #FF6B6B;
+  --star-bright: rgba(255, 255, 255, 0.8);
+  --star-medium: rgba(161, 196, 253, 0.5);
+  --star-dim: rgba(227, 253, 253, 0.3);
 }
 
 * {
@@ -41,7 +43,7 @@ html, body {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -57,7 +59,7 @@ body::before {
   transform: translate(-50%, -50%);
   font-size: 15rem;
   font-weight: 900;
-  background: linear-gradient(135deg, rgba(255, 179, 198, 0.08) 0%, rgba(255, 142, 171, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(161, 196, 253, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -74,12 +76,12 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(135deg, 
-      transparent 0%, 
-      rgba(255, 255, 255, 0.02) 20%, 
-      rgba(255, 255, 255, 0.03) 40%, 
-      rgba(255, 255, 255, 0.02) 60%, 
+  background:
+    linear-gradient(135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.02) 20%,
+      rgba(255, 255, 255, 0.03) 40%,
+      rgba(255, 255, 255, 0.02) 60%,
       transparent 100%);
   pointer-events: none;
   z-index: 0;
@@ -93,13 +95,14 @@ body::after {
   top: 0;
   width: 280px;
   height: 100vh;
-  background: rgba(10, 10, 12, 0.95);
-  border-right: 1px solid var(--border-color-bright);
+  background: rgba(255, 255, 255, 0.9);
+  border-right: 1px solid var(--border-color);
   z-index: 1000;
   transition: width 0.3s;
   overflow-y: auto;
   overflow-x: hidden;
-  backdrop-filter: blur(0px);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 0 15px rgba(161, 196, 253, 0.1);
 }
 
 .sidebar.collapsed {
@@ -166,15 +169,16 @@ body::after {
 }
 
 .sidebar-item:hover {
-  background: rgba(15, 15, 18, 0.8);
+  background: var(--bg-secondary);
   color: var(--text-primary);
   border-left: 2px solid var(--border-color-bright);
 }
 
 .sidebar-item.active {
-  background: rgba(15, 15, 18, 0.9);
+  background: var(--bg-tertiary);
   color: var(--text-primary);
-  border-left: 2px solid var(--text-primary);
+  border-left: 2px solid var(--accent-cyan);
+  font-weight: 500;
 }
 
 .sidebar-item-icon {
@@ -206,15 +210,16 @@ body::after {
   left: 280px;
   right: 0;
   height: 70px;
-  background: rgba(10, 10, 12, 0.95);
-  border-bottom: 1px solid var(--border-color-bright);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 32px;
   z-index: 999;
   transition: left 0.3s;
-  backdrop-filter: blur(0px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 15px rgba(161, 196, 253, 0.1);
 }
 
 .topbar-left {
@@ -253,7 +258,7 @@ body::after {
 }
 
 .notification-bell:hover {
-  background: rgba(15, 15, 18, 0.8);
+  background: var(--bg-secondary);
   border-color: var(--border-color-bright);
 }
 
@@ -263,8 +268,8 @@ body::after {
   right: -4px;
   min-width: 16px;
   height: 16px;
-  background: var(--text-primary);
-  color: var(--bg-primary);
+  background: var(--accent-warm);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +296,7 @@ body::after {
 }
 
 .user-avatar:hover {
-  background: rgba(15, 15, 18, 0.8);
+  background: var(--bg-secondary);
   border-color: var(--border-color-bright);
 }
 
@@ -310,7 +315,7 @@ body::after {
 }
 
 .logout-btn:hover {
-  background: rgba(15, 15, 18, 0.8);
+  background: var(--bg-secondary);
   border-color: var(--border-color-bright);
 }
 
@@ -387,8 +392,9 @@ body::after {
 
 .search-input:focus {
   outline: none;
-  background: rgba(15, 15, 18, 0.9);
+  background: #ffffff;
   border-color: var(--border-color-bright);
+  box-shadow: 0 0 10px rgba(161, 196, 253, 0.3);
 }
 
 .search-input::placeholder {
@@ -397,7 +403,7 @@ body::after {
 
 .filter-select {
   padding: 12px 16px;
-  background: rgba(10, 10, 12, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   font-size: 13px;
@@ -405,6 +411,8 @@ body::after {
   cursor: pointer;
   transition: all 0.2s;
   min-width: 200px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M5 7L1 3h8z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -444,9 +452,12 @@ body::after {
 }
 
 .stat-card {
-  background: rgba(10, 10, 12, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--border-color-bright);
   padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(161, 196, 253, 0.1);
 }
 
 .stat-card h3 {
@@ -524,9 +535,11 @@ body::after {
 
 /* 데이터 테이블 - 1px Hairline Grid */
 .data-table-container {
-  background: rgba(10, 10, 12, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--border-color-bright);
   overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(161, 196, 253, 0.1);
 }
 
 table {
@@ -542,8 +555,8 @@ table {
 }
 
 .data-table thead {
-  background: rgba(15, 15, 18, 0.9);
-  border-bottom: 1px solid var(--border-color-bright);
+  background: rgba(240, 248, 255, 0.9);
+  border-bottom: 2px solid var(--border-color-bright);
 }
 
 .data-table th {
@@ -569,15 +582,15 @@ table {
 }
 
 .data-table tbody tr:nth-child(even) {
-  background: rgba(15, 15, 18, 0.4);
+  background: rgba(245, 247, 250, 0.5);
 }
 
 .data-table tbody tr:nth-child(odd) {
-  background: rgba(10, 10, 12, 0.6);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .data-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #E3FDFD;
   border-bottom-color: var(--border-color-bright);
 }
 
