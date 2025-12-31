@@ -4,13 +4,17 @@ const ShopItem = require('../models/ShopItem');
 // 아이템 구매
 exports.purchaseItem = async (req, res) => {
     try {
-        const { itemId } = req.body;
+        const { itemId, quantity = 1 } = req.body;
         const { telegramId } = req.params;
 
-        console.log('[ItemPurchase] Purchase request:', { itemId, telegramId });
+        console.log('[ItemPurchase] Purchase request:', { itemId, telegramId, quantity });
 
         if (!itemId) {
             return res.status(400).json({ error: 'Item ID is required' });
+        }
+
+        if (quantity < 1 || !Number.isInteger(quantity)) {
+            return res.status(400).json({ error: 'Invalid quantity' });
         }
 
         const user = await User.findOne({ telegramId: parseInt(telegramId) });
@@ -31,18 +35,21 @@ exports.purchaseItem = async (req, res) => {
             return res.status(400).json({ error: 'This item is not available' });
         }
 
-        // 재고 확인
-        if (shopItem.stock > 0 && shopItem.soldCount >= shopItem.stock) {
-            return res.status(400).json({ error: 'This item is out of stock' });
+        // 재고 확인 (quantity 고려)
+        if (shopItem.stock > 0 && (shopItem.soldCount + quantity) > shopItem.stock) {
+            return res.status(400).json({ error: 'Insufficient stock for the requested quantity' });
         }
 
+        // 총 가격 계산
+        const totalPrice = shopItem.price * quantity;
+
         // 잔액 확인
-        if (user.balance < shopItem.price) {
+        if (user.balance < totalPrice) {
             return res.status(400).json({ error: 'Insufficient balance' });
         }
 
         // 잔액 차감
-        user.balance -= shopItem.price;
+        user.balance -= totalPrice;
 
         // 인벤토리에 아이템 추가
         console.log('[ItemPurchase] Shop item details:', {
@@ -62,13 +69,13 @@ exports.purchaseItem = async (req, res) => {
 
         const existingItem = user.inventory.find(item => item.itemKey === shopItem.itemKey);
         if (existingItem) {
-            existingItem.quantity += 1;
+            existingItem.quantity += quantity;
             existingItem.purchasedAt = Date.now();
             console.log('[ItemPurchase] Updated existing item:', existingItem);
         } else {
             const newItem = {
                 itemKey: shopItem.itemKey,
-                quantity: 1,
+                quantity: quantity,
                 purchasedAt: Date.now()
             };
             user.inventory.push(newItem);
@@ -77,21 +84,24 @@ exports.purchaseItem = async (req, res) => {
 
         await user.save();
 
-        // 판매 수 증가
-        shopItem.soldCount += 1;
+        // 판매 수 증가 (quantity만큼)
+        shopItem.soldCount += quantity;
         await shopItem.save();
 
         console.log('[ItemPurchase] Item purchased successfully:', {
             itemKey: shopItem.itemKey,
+            quantity: quantity,
+            totalPrice: totalPrice,
             newBalance: user.balance,
             inventorySize: user.inventory.length
         });
 
         res.json({
             success: true,
-            message: 'Item purchased successfully',
+            message: `Item purchased successfully (x${quantity})`,
             balance: user.balance,
-            inventory: user.inventory
+            inventory: user.inventory,
+            purchasedQuantity: quantity
         });
     } catch (error) {
         console.error('Error purchasing item:', error);
