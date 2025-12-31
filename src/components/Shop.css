@@ -151,11 +151,11 @@
 .promo-codes-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 10px;
   width: 100%;
-  padding: 0 8px;
+  padding: 0 12px;
   box-sizing: border-box;
-  max-width: 480px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -240,7 +240,7 @@
 /* 아이템 이미지 */
 .item-image-container {
   width: 100%;
-  height: 70px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -444,16 +444,17 @@
 /* 작은 화면 대응 */
 @media (max-width: 380px) {
   .promo-codes-list {
-    /* Keep 2 columns in mobile portrait mode */
-    /* grid-template-columns: 1fr; */
+    gap: 8px;
+    padding: 0 8px;
   }
 
   .promo-code-card {
     max-width: none;
+    padding: 6px;
   }
 
   .item-image-container {
-    height: 140px;
+    height: 80px;
   }
 }
 
