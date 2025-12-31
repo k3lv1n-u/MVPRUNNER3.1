@@ -7,7 +7,7 @@
   height: 100%;
   height: 100vh;
   height: 100dvh;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -33,9 +33,10 @@
   z-index: 1;
   width: 100%;
   max-width: 600px;
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #C3CFE2;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px rgba(161, 196, 253, 0.3);
   padding: 30px;
   padding-top: 20px;
   margin-top: 0;
@@ -53,19 +54,20 @@
 .promo-receiver-title {
   font-size: 32px;
   font-weight: bold;
-  color: #ffffff;
+  color: #FF6B6B;
+  text-shadow: 0 2px 4px rgba(255, 107, 107, 0.2);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .close-btn {
-  background: #000000;
-  border: 1px solid #ff4444;
-  color: #ff4444;
+  background: #E0E0E0;
+  border: 1px solid #FF6B6B;
+  color: #FF6B6B;
   width: 40px;
   height: 40px;
-  border-radius: 0 !important;
+  border-radius: 50% !important;
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s;
@@ -75,8 +77,8 @@
 }
 
 .close-btn:hover {
-  background: #ff4444;
-  color: #000000;
+  background: #FF6B6B;
+  color: #ffffff;
   transform: none;
 }
 
@@ -84,18 +86,18 @@
 .error-message {
   text-align: center;
   padding: 40px;
-  color: #ffffff;
+  color: #333333;
   font-size: 18px;
 }
 
 .error-message {
-  color: #ff4444;
+  color: #FF6B6B;
 }
 
 .empty-message {
   text-align: center;
   padding: 60px 20px;
-  color: #888888;
+  color: #777777;
 }
 
 .empty-icon {
@@ -120,15 +122,16 @@
 }
 
 .promo-code-card {
-  background: #000000;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
+  border: 1px solid #ffffff;
+  border-radius: 15px !important;
   padding: 20px;
   transition: all 0.3s;
 }
 
 .promo-code-card:hover {
-  border-color: #ffffff;
+  border-color: #FF8E53;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
@@ -138,14 +141,15 @@
 
 .promo-code-label {
   font-size: 14px;
-  color: #888888;
+  color: #555555;
   margin-bottom: 8px;
 }
 
 .promo-code-value {
   font-size: 28px;
   font-weight: bold;
-  color: #00ffff;
+  color: #2D6A4F;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   letter-spacing: 3px;
   margin-bottom: 10px;
   font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
@@ -167,11 +171,11 @@
   flex: 1;
   padding: 12px 20px;
   border: 1px solid #333333;
-  background: #111111;
-  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #dfe9f3 100%);
+  color: #555555;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 0 !important;
+  border-radius: 15px !important;
   cursor: pointer;
   transition: all 0.3s;
   text-transform: uppercase;
@@ -179,27 +183,27 @@
 
 .copy-btn:hover,
 .use-btn:hover {
-  background: #222222;
-  border-color: #ffffff;
+  background: #ffffff;
+  border-color: #A1C4FD;
   transform: translateY(-2px);
 }
 
 .copy-btn:active,
 .use-btn:active {
   transform: translateY(0);
-  background: #333333;
+  background: #C3CFE2;
 }
 
 .use-btn {
-  background: #000000;
-  border-color: #00ff00;
-  color: #00ff00;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  border: none;
+  color: #ffffff;
 }
 
 .use-btn:hover {
-  background: #00ff00;
-  color: #000000;
-  border-color: #00ff00;
+  background: linear-gradient(135deg, #FF8E53 0%, #FFD93D 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
 }
 
 /* Landscape mode */

@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -47,12 +47,15 @@
     transform: translateY(-10vh) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 0.8;
   }
+
   90% {
     opacity: 0.8;
   }
+
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -60,9 +63,11 @@
 }
 
 .game-over-content {
-  background: #111111;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #C3CFE2;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 40px rgba(161, 196, 253, 0.3);
+  backdrop-filter: blur(10px);
   padding: 32px 24px;
   max-width: 100%;
   width: 100%;
@@ -96,14 +101,14 @@
 .title-text {
   font-size: 36px;
   font-weight: 900;
-  background: linear-gradient(135deg, #ff6b9d 0%, #ffa5c9 50%, #d63384 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
   letter-spacing: 3px;
   margin: 0;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 107, 0.2));
   position: relative;
 }
 
@@ -118,14 +123,15 @@
 .score-display {
   text-align: center;
   padding: 20px;
-  background: #000000;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: #ffffff;
+  border: 1px solid #E0E0E0;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .score-label {
   font-size: 14px;
-  color: #8b5a7d;
+  color: #777777;
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -134,17 +140,18 @@
 .score-value {
   font-size: 48px;
   font-weight: 700;
-  color: #d63384;
+  font-weight: 800;
+  color: #FF6B6B;
   line-height: 1;
-  text-shadow: 0 2px 4px rgba(255, 182, 193, 0.3);
+  text-shadow: 0 2px 4px rgba(255, 107, 107, 0.2);
 }
 
 .new-record-badge {
   text-align: center;
   padding: 12px;
-  background: #1a1a00;
+  background: #FFFBE6;
   border: 1px solid #FFD700;
-  border-radius: 0 !important;
+  border-radius: 15px !important;
   color: #FFD700;
   font-size: 16px;
   font-weight: 700;
@@ -153,9 +160,9 @@
 .promo-code-notification {
   text-align: center;
   padding: 20px;
-  background: #111111;
-  border: 1px solid #00ffff;
-  border-radius: 0 !important;
+  background: #F0F8FF;
+  border: 1px solid #A1C4FD;
+  border-radius: 15px !important;
   margin-bottom: 20px;
   animation: promoCodePulse 2s ease-in-out infinite;
 }
@@ -187,21 +194,21 @@
 .promo-code-title {
   font-size: 20px;
   font-weight: 700;
-  color: #00ffff;
+  color: #2D6A4F;
 }
 
 .promo-code-message {
   font-size: 14px;
-  color: #ffffff;
+  color: #333333;
   margin-bottom: 15px;
   opacity: 0.9;
 }
 
 .promo-code-display {
   padding: 15px;
-  background: #000000;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: #ffffff;
+  border: 1px solid #E0E0E0;
+  border-radius: 10px !important;
   margin-bottom: 15px;
 }
 
@@ -216,24 +223,24 @@
 .promo-code-value {
   font-size: 24px;
   font-weight: 700;
-  color: #00ffff;
+  color: #2D6A4F;
   letter-spacing: 2px;
   font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
 }
 
 .promo-code-instruction {
   font-size: 12px;
-  color: #888888;
+  color: #777777;
   margin-bottom: 15px;
   line-height: 1.5;
 }
 
 .promo-code-close-btn {
   padding: 10px 20px;
-  background: #000000;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
-  color: #ffffff;
+  background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
+  border: 1px solid #ffffff;
+  border-radius: 15px !important;
+  color: #5d6d7e;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -242,16 +249,16 @@
 }
 
 .promo-code-close-btn:hover {
-  background: #222222;
+  background: linear-gradient(135deg, #ffffff 0%, #dfe9f3 100%);
   border-color: #ffffff;
 }
 
 .high-score-display {
   text-align: center;
   padding: 16px;
-  background: #000000;
-  border: 1px solid #333333;
-  border-radius: 0 !important;
+  background: #ffffff;
+  border: 1px solid #E0E0E0;
+  border-radius: 15px !important;
 }
 
 .high-score-label {
@@ -286,7 +293,7 @@
   font-size: 16px;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 12px rgba(184, 230, 213, 0.4);
+  box-shadow: 0 4px 12px rgba(161, 196, 253, 0.4);
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
@@ -299,13 +306,13 @@
   font-size: 17px;
   font-weight: 700;
   padding: 18px 24px;
-  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
-  color: #d63384;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  color: #ffffff;
   position: relative;
   overflow: visible;
   border-radius: 20px !important;
   box-shadow: 0 4px 15px rgba(255, 179, 198, 0.5);
-  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
 /* 재시작 버튼 위에 눈 효과 */
@@ -316,22 +323,22 @@
   left: -2px;
   right: -2px;
   height: 12px;
-  background: 
+  background:
     radial-gradient(ellipse 150px 15px at 50% 0%, #ffe4f0 0%, #fff0f7 40%, rgba(255, 240, 247, 0.6) 70%, transparent 100%);
-  filter: drop-shadow(0 2px 4px rgba(255, 182, 193, 0.5));
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 107, 0.5));
   z-index: 1;
   border-radius: 20px 20px 0 0;
 }
 
 .game-over-btn.menu-btn {
-  background: linear-gradient(135deg, #b8e6d5 0%, #95d9c3 50%, #b8e6d5 100%);
+  background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
   border: none;
   border-radius: 20px !important;
   position: relative;
   overflow: visible;
   padding: 20px 24px;
-  box-shadow: 0 4px 15px rgba(184, 230, 213, 0.5);
-  color: #2d6a4f;
+  box-shadow: 0 4px 15px rgba(161, 196, 253, 0.5);
+  color: #5d6d7e;
 }
 
 /* 메뉴 버튼 위에 눈 효과 */
@@ -342,9 +349,9 @@
   left: -2px;
   right: -2px;
   height: 12px;
-  background: 
+  background:
     radial-gradient(ellipse 150px 15px at 50% 0%, #e0f5ed 0%, #ebf9f3 40%, rgba(235, 249, 243, 0.6) 70%, transparent 100%);
-  filter: drop-shadow(0 2px 4px rgba(149, 217, 195, 0.5));
+  filter: drop-shadow(0 2px 4px rgba(161, 196, 253, 0.5));
   z-index: 1;
   border-radius: 20px 20px 0 0;
 }
@@ -357,12 +364,12 @@
   left: 5%;
   right: 5%;
   height: 3px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(173, 216, 230, 0.3) 20%,
-    rgba(173, 216, 230, 0.5) 50%,
-    rgba(173, 216, 230, 0.3) 80%,
-    transparent 100%);
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(173, 216, 230, 0.3) 20%,
+      rgba(173, 216, 230, 0.5) 50%,
+      rgba(173, 216, 230, 0.3) 80%,
+      transparent 100%);
   border-radius: 50%;
   filter: blur(2px);
 }
@@ -372,19 +379,19 @@
 }
 
 .game-over-btn.restart-btn:hover {
-  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
-  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
+  background: linear-gradient(135deg, #FF8E53 0%, #FFD93D 100%);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
 }
 
 .game-over-btn.menu-btn:hover {
-  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%);
-  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
+  background: linear-gradient(135deg, #ffffff 0%, #dfe9f3 100%);
+  box-shadow: 0 6px 20px rgba(161, 196, 253, 0.6);
   transform: translateY(-2px);
 }
 
 .game-over-btn:active {
   transform: translateY(0);
-  background: #333333;
+  background: #C3CFE2;
 }
 
 /* 작은 화면 (360px 이하) */

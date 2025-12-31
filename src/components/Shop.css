@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -34,7 +34,8 @@
 
 .stars-background .star {
   position: absolute;
-  background: #ffffff;
+  background: #A1C4FD;
+  /* Ice Blue */
   border-radius: 50%;
   opacity: 0;
   animation: snowfall linear infinite;
@@ -45,12 +46,15 @@
     transform: translateY(-10vh) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 0.8;
   }
+
   90% {
     opacity: 0.8;
   }
+
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -79,7 +83,7 @@
 .shop-title {
   font-size: 2.2em;
   font-weight: 900;
-  background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff6b6b 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -97,17 +101,18 @@
   font-size: 1.3em;
   color: #ffffff;
   margin-top: 10px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   padding: 12px 24px;
   border-radius: 25px;
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid #FFD700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .balance-label {
-  color: #ffffff;
+  color: #555555;
   font-weight: 600;
 }
 
@@ -129,9 +134,9 @@
   text-align: center;
   padding: 40px 20px;
   font-size: 1.1em;
-  color: rgba(255, 255, 255, 0.7);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #777777;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid #C3CFE2;
   border-radius: 15px !important;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -151,8 +156,8 @@
 }
 
 .promo-code-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  border: 3px solid #C3CFE2;
   border-radius: 20px !important;
   padding: 16px;
   display: flex;
@@ -188,9 +193,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
@@ -230,7 +238,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  background: #F0F8FF;
   border-radius: 15px;
   overflow: hidden;
   position: relative;
@@ -251,7 +259,7 @@
 
 .promo-code-title {
   font-size: 0.95em;
-  color: #ffffff;
+  color: #333333;
   margin-bottom: 6px;
   margin-top: 8px;
   font-weight: 700;
@@ -262,14 +270,14 @@
 
 .promo-code-details {
   font-size: 0.7em;
-  color: rgba(255, 255, 255, 0.7);
+  color: #777777;
   margin-bottom: 5px;
   line-height: 1.4;
 }
 
 .promo-code-stock {
   font-size: 0.65em;
-  color: rgba(255, 255, 255, 0.5);
+  color: #999999;
   margin-top: 4px;
 }
 
@@ -292,7 +300,7 @@
 .purchase-btn {
   width: 100%;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   border: none;
   border-radius: 15px !important;
   color: #ffffff;
@@ -320,7 +328,7 @@
   left: 0;
   right: 0;
   height: 8px;
-  background: 
+  background:
     radial-gradient(circle at 15% 50%, #ffffff 0%, #ffffff 45%, transparent 50%),
     radial-gradient(circle at 45% 50%, #f0f8ff 0%, #f0f8ff 40%, transparent 45%),
     radial-gradient(circle at 75% 50%, #ffffff 0%, #ffffff 48%, transparent 52%);
@@ -343,9 +351,9 @@
 }
 
 .purchase-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ff9d5c 0%, #ff7b45 100%);
+  background: linear-gradient(135deg, #FF8E53 0%, #FFD93D 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
 .purchase-btn:active:not(:disabled) {
@@ -355,7 +363,7 @@
 .purchase-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: linear-gradient(135deg, #666666 0%, #555555 100%);
+  background: #E0E0E0;
   box-shadow: none;
 }
 
@@ -389,15 +397,16 @@
 }
 
 .back-btn {
-  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 50%, #165b33 100%);
+  background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
   border: none;
-  box-shadow: 0 4px 15px rgba(22, 91, 51, 0.4);
+  box-shadow: 0 4px 15px rgba(161, 196, 253, 0.4);
+  color: #5d6d7e;
 }
 
 .refresh-btn {
   background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
   border: none;
-  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
 .back-btn:hover,
@@ -406,13 +415,13 @@
 }
 
 .back-btn:hover {
-  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%);
-  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
+  background: linear-gradient(135deg, #ffffff 0%, #dfe9f3 100%);
+  box-shadow: 0 6px 20px rgba(161, 196, 253, 0.6);
 }
 
 .refresh-btn:hover {
-  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
-  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
 }
 
 .back-btn:active,
@@ -425,11 +434,11 @@
   .promo-codes-list {
     grid-template-columns: 1fr;
   }
-  
+
   .promo-code-card {
     max-width: none;
   }
-  
+
   .item-image-container {
     height: 140px;
   }
@@ -446,7 +455,7 @@
   .promo-codes-list {
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .shop-content {
     max-width: 1200px;
   }

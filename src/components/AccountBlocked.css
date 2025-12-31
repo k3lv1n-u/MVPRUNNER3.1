@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,9 +20,10 @@
 .account-blocked-content {
   position: relative;
   z-index: 1;
-  background: #111111;
-  border: 1px solid #ff0000;
-  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #FF6B6B;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
   padding: 40px;
   max-width: 90%;
   width: 500px;
@@ -48,7 +49,7 @@
 }
 
 .account-blocked-title {
-  color: #ff0000;
+  color: #FF6B6B;
   font-size: 32px;
   font-weight: bold;
   margin: 0 0 20px 0;
@@ -57,30 +58,30 @@
 }
 
 .account-blocked-message {
-  color: #ffffff;
+  color: #555555;
   font-size: 18px;
   margin: 0 0 15px 0;
   line-height: 1.6;
 }
 
 .account-blocked-submessage {
-  color: #ff4444;
+  color: #FF6B6B;
   font-size: 16px;
   margin: 0 0 25px 0;
   line-height: 1.5;
 }
 
 .account-blocked-reason {
-  background: #1a0000;
-  border: 1px solid #ff0000;
-  border-radius: 0 !important;
+  background: #FFF0F0;
+  border: 1px solid #FF6B6B;
+  border-radius: 15px !important;
   padding: 15px;
   margin: 20px 0;
   text-align: left;
 }
 
 .reason-label {
-  color: #ff4444;
+  color: #FF6B6B;
   font-size: 14px;
   font-weight: bold;
   margin: 0 0 8px 0;
@@ -88,7 +89,7 @@
 }
 
 .reason-text {
-  color: #cccccc;
+  color: #333333;
   font-size: 13px;
   margin: 0;
   white-space: pre-wrap;
@@ -99,7 +100,7 @@
 .account-blocked-footer {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #333333;
+  border-top: 1px solid #E0E0E0;
 }
 
 .account-blocked-footer p {
