@@ -434,7 +434,8 @@
 /* 작은 화면 대응 */
 @media (max-width: 380px) {
   .promo-codes-list {
-    grid-template-columns: 1fr;
+    /* Keep 2 columns even on small screens */
+    /* grid-template-columns: 1fr; */
   }
 
   .promo-code-card {
