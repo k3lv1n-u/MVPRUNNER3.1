@@ -258,7 +258,7 @@ const GameCanvas = ({
         const api = (await import('../services/api')).default;
         const adImageInfo = await api.getAdImage();
         const gyrocopSprite = gyrocopSpriteRef.current;
-        
+
         gyrocopSprite.onload = () => {
           gameStateRef.current.gyrocopLoaded = true;
           checkImagesLoaded(); // 이미지 로드 완료 시 체크
@@ -268,7 +268,7 @@ const GameCanvas = ({
           // 기본 이미지로 대체
           gyrocopSprite.src = '/gyrocop.png';
         };
-        
+
         // 데이터베이스에 이미지 데이터가 있으면 API 엔드포인트 사용, 없으면 경로 사용
         if (adImageInfo.hasImageData) {
           // Base64 데이터를 이미지로 반환하는 API 엔드포인트 사용
@@ -295,14 +295,14 @@ const GameCanvas = ({
         gyrocopSprite.src = '/gyrocop.png';
       }
     };
-    
+
     // 광고 이미지를 다른 이미지들과 함께 로드
     loadAdImage();
 
     const bootNormal = bootNormalRef.current;
     const bootActive = bootActiveRef.current;
 
-    bootNormal.onload = () => {};
+    bootNormal.onload = () => { };
     bootNormal.onerror = () => {
       console.error('[GameCanvas] Failed to load boot normal image');
     };
@@ -319,7 +319,7 @@ const GameCanvas = ({
     const shieldInactive = shieldInactiveRef.current;
     const shieldActive = shieldActiveRef.current;
 
-    shieldInactive.onload = () => {};
+    shieldInactive.onload = () => { };
     shieldInactive.onerror = () => {
       console.error('[GameCanvas] Failed to load shield inactive image');
     };
@@ -432,7 +432,7 @@ const GameCanvas = ({
         const viewportWidth = window.visualViewport?.width || window.innerWidth;
         const viewportHeight = window.visualViewport?.height || window.innerHeight;
         const isLandscapeMode = viewportWidth > viewportHeight;
-        
+
         if (isLandscapeMode) {
           // 가로 모드: 전체 화면 사용
           displayWidth = viewportWidth;
@@ -468,7 +468,7 @@ const GameCanvas = ({
     // Set CSS display size
     canvas.style.width = `${Math.floor(displayWidth)}px`;
     canvas.style.height = `${Math.floor(displayHeight)}px`;
-    
+
     // canvas 논리적 크기 저장 (wrapper 스타일 계산용)
     canvasDisplaySizeRef.current = { width: displayWidth, height: displayHeight };
 
@@ -497,7 +497,7 @@ const GameCanvas = ({
       state.bounties = state.bounties.filter(bounty => {
         // 코인이 화면 밖으로 나갔거나, 새로운 canvas 크기 기준으로 위치가 이상한 경우 제거
         return bounty.x + bounty.width >= 0 && bounty.x <= displayWidth &&
-               bounty.y + bounty.height >= 0 && bounty.y <= displayHeight;
+          bounty.y + bounty.height >= 0 && bounty.y <= displayHeight;
       });
 
       // 캐릭터가 화면 밖으로 나간 경우 위치 재조정
@@ -566,34 +566,46 @@ const GameCanvas = ({
     };
   }, [isGamePlaying, isLandscape, isPCWebEnvironment, resizeCanvas]);
 
-  // 배경 그리기 (Obsidian Minimalism: Pure black with faint static stars)
+  // 배경 그리기 (Winter Christmas/New Year 2026 Theme)
   const drawBackground = (ctx, canvas) => {
     // Logical size (CSS pixels)
     const width = canvas.width / (window.devicePixelRatio || 1);
     const height = canvas.height / (window.devicePixelRatio || 1);
 
-    // Pure obsidian black background
-    ctx.fillStyle = '#000000';
+    // Winter gradient background
+    const gradient = ctx.createLinearGradient(0, 0, 0, height - 50);
+    gradient.addColorStop(0, '#E3FDFD');    // Light ice blue
+    gradient.addColorStop(0.5, '#FFFFFF');  // White
+    gradient.addColorStop(1, '#FFF5E6');    // Warm cream
+
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height - 50);
 
-    // Static faint white star specks
-    ctx.fillStyle = '#ffffff';
-    const starCount = 80;
+    // Draw snow sparkles (replacing stars)
+    const snowCount = 60;
 
-    for (let i = 0; i < starCount; i++) {
+    for (let i = 0; i < snowCount; i++) {
       const seed = i * 7919;
       const baseX = (seed % width);
       const baseY = ((seed * 7) % (height - 50));
 
       const sizeSeed = (seed * 13) % 100;
-      const size = 0.5 + (sizeSeed / 100) * 0.5;
+      const size = 1 + (sizeSeed / 100) * 2; // Slightly larger snowflakes
 
       const opacitySeed = (seed * 17) % 100;
-      const opacity = 0.15 + (opacitySeed / 100) * 0.25;
+      const opacity = 0.3 + (opacitySeed / 100) * 0.4;
 
+      // Ice blue snowflakes
       ctx.globalAlpha = opacity;
+      ctx.fillStyle = '#A1C4FD';
       ctx.beginPath();
       ctx.arc(baseX, baseY, size, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Add a subtle white glow
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.arc(baseX, baseY, size * 0.5, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.globalAlpha = 1.0;
@@ -604,12 +616,12 @@ const GameCanvas = ({
     const height = canvas.height / (window.devicePixelRatio || 1);
     const groundHeight = 50;
 
-    // Flat style ground
-    ctx.fillStyle = '#111111';
+    // Winter style ground
+    ctx.fillStyle = '#F5F7FA';
     ctx.fillRect(0, height - groundHeight, width, groundHeight);
 
-    // Thin 1px dark gray border - Subpixel perfect
-    ctx.strokeStyle = '#333333';
+    // Thin border for ground
+    ctx.strokeStyle = '#C3CFE2';
     ctx.lineWidth = 1;
     ctx.beginPath();
     // Align to 0.5 for crisp 1px lines
@@ -653,23 +665,23 @@ const GameCanvas = ({
         if (state.jumpStartTime === 0) {
           state.jumpStartTime = Date.now();
         }
-        
+
         // 점프 물리 계산: 최고점까지의 시간
         const framesToApex = Math.abs(state.dino.jumpPower / state.dino.gravity);
         const totalJumpFrames = framesToApex * 2; // 상승 + 하강
         const totalJumpTime = totalJumpFrames * 16.67; // 밀리초 (60fps 가정)
-        
+
         // 점프 경과 시간
         const jumpElapsed = Date.now() - state.jumpStartTime;
         const jumpProgress = Math.min(jumpElapsed / totalJumpTime, 1.0); // 0.0 ~ 1.0
-        
+
         // 점프 진행도에 따라 프레임 인덱스 계산 (점프 시간 동안 모든 프레임 한 번 재생)
         const totalFrames = state.jumpFrames.length;
         const frameIndex = Math.min(
           Math.floor(jumpProgress * totalFrames),
           totalFrames - 1
         );
-        
+
         const jumpFrame = state.jumpFrames[frameIndex];
         if (jumpFrame) {
           // 각 프레임의 실제 크기 사용
@@ -690,7 +702,7 @@ const GameCanvas = ({
             Math.floor(renderX), Math.floor(renderY),
             Math.floor(frameWidth), Math.floor(frameHeight)
           );
-          
+
           // 프레임 인덱스 업데이트 (점프 진행도 기반)
           state.jumpFrameIndex = frameIndex;
         } else {
@@ -910,7 +922,7 @@ const GameCanvas = ({
         dino.velocityY = 0;
         dino.onGround = true;
         // 땅에 착지 시 달리기 애니메이션 프레임 초기화 및 점프 시작 시간 리셋
-          if (wasInAir) {
+        if (wasInAir) {
           state.jumpStartTime = 0; // 점프 시작 시간 리셋
           if (state.runningFrames) {
             state.runningFrameIndex = 0;
@@ -1233,16 +1245,16 @@ const GameCanvas = ({
     const now = (typeof performance !== 'undefined' && performance.now)
       ? performance.now()
       : Date.now();
-    
+
     let deltaTime = 0;
     if (lastFrameTimeRef.current !== null) {
       deltaTime = now - lastFrameTimeRef.current;
-      
+
       // 음수 또는 0인 경우 처리 (시스템 시간 변경 등)
       if (deltaTime <= 0) {
         deltaTime = MAX_DELTA_TIME;
       }
-      
+
       // 화면 녹화로 인한 매우 낮은 프레임률(예: 10-15fps)을 지원하기 위해
       // 델타 타임 제한을 더 크게 설정 (최대 20프레임 분량, 약 333ms)
       // 이렇게 하면 3fps까지도 게임이 정상적으로 작동함
@@ -1312,12 +1324,12 @@ const GameCanvas = ({
         // 델타 타임을 프레임 비율로 변환 (60fps 기준, 약 16.67ms)
         // 화면 녹화로 인한 낮은 프레임률(예: 10-30fps)에서도 정상 작동
         const frameMultiplier = deltaTime / MAX_DELTA_TIME;
-        
+
         // 프레임이 너무 느리거나 멈춘 경우에도 게임이 정상적으로 진행되도록 함
         // 최소값을 0.5로 설정하여 매우 낮은 프레임률에서도 게임이 너무 느려지지 않도록 함
         // 최대값을 20으로 설정하여 화면 녹화 중 낮은 프레임률을 지원
         const clampedMultiplier = Math.min(Math.max(frameMultiplier, 0.5), 20);
-        
+
         updateDino(height, clampedMultiplier, deltaTime);
         updateGyrocop(canvas); // gyrocop already updated to use logical width inside
         updateObstacles(width, height, clampedMultiplier, deltaTime);
@@ -1345,10 +1357,10 @@ const GameCanvas = ({
       const tryPlayMusic = () => {
         soundManager.playBackgroundMusic();
       };
-      
+
       // 즉시 재생 시도
       tryPlayMusic();
-      
+
       // 오디오가 준비될 때까지 재시도 (최대 3번)
       let retryCount = 0;
       const maxRetries = 3;
@@ -1357,15 +1369,15 @@ const GameCanvas = ({
           clearInterval(retryInterval);
           return;
         }
-        
+
         retryCount++;
         tryPlayMusic();
-        
+
         if (retryCount >= maxRetries) {
           clearInterval(retryInterval);
         }
       }, 200);
-      
+
       // cleanup 함수
       return () => {
         clearInterval(retryInterval);
@@ -1932,11 +1944,11 @@ const GameCanvas = ({
       const viewportWidth = window.visualViewport?.width || window.innerWidth;
       const canvasWidth = canvasDisplaySizeRef.current.width;
       const canvasHeight = canvasDisplaySizeRef.current.height;
-      
+
       // 세로 모드 화면 너비에 정확히 맞춰서 축소
       // scale = 화면 너비 / canvas 논리적 너비
       const scale = viewportWidth / canvasWidth;
-      
+
       // 디버깅을 위한 로그 (개발 중에만)
       if (process.env.NODE_ENV === 'development') {
         console.log('[GameCanvas] Portrait mode scale:', {
@@ -1947,7 +1959,7 @@ const GameCanvas = ({
           scaledHeight: canvasHeight * scale
         });
       }
-      
+
       setWrapperStyle({
         width: `${canvasWidth}px`,
         height: `${canvasHeight}px`,
@@ -1969,19 +1981,19 @@ const GameCanvas = ({
     if (!isLandscape && isGamePlaying && !isPCWebEnvironment) {
       // 초기 업데이트
       updateWrapperStyle();
-      
+
       const handleResize = () => {
         // 약간의 지연을 두어 크기가 안정화될 때까지 대기
         setTimeout(() => {
           updateWrapperStyle();
         }, 50);
       };
-      
+
       window.addEventListener('resize', handleResize);
       if (window.visualViewport) {
         window.visualViewport.addEventListener('resize', handleResize);
       }
-      
+
       return () => {
         window.removeEventListener('resize', handleResize);
         if (window.visualViewport) {
@@ -1992,13 +2004,13 @@ const GameCanvas = ({
       setWrapperStyle({});
     }
   }, [isLandscape, isGamePlaying, isPCWebEnvironment, updateWrapperStyle]);
-  
+
   // resizeCanvas 완료 후 wrapper 스타일 업데이트를 위한 effect
   // resizeCanvas는 useCallback이므로, canvas 크기가 변경될 때마다 호출됨
   // updateWrapperStyle은 useEffect에서 호출되므로 별도 effect 불필요
 
   return (
-    <div 
+    <div
       className={`game-canvas-wrapper ${isGamePlaying ? 'game-playing' : ''} ${isPCWebEnvironment ? 'pc-web' : ''} ${!isLandscape ? 'portrait-mode' : ''}`}
       style={wrapperStyle}
     >

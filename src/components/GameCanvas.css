@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
 }
 
 /* 게임 플레이 중 래퍼 - 모바일: 실제 크기 사용 */
@@ -61,7 +61,7 @@
 .game-canvas {
   border: none;
   border-radius: 0 !important;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   display: block;
   margin: 0;
   padding: 0;
@@ -397,7 +397,7 @@
   /* Lighter dark background for visibility */
   border: 1px solid #E0E0E0;
   /* Brighter border for contrast */
-  border-radius: 0 !important;
+  border-radius: 15px !important;
   padding: 5px;
   position: relative;
   display: flex;
@@ -473,7 +473,7 @@
   background: #00ffff;
   /* Cyan badge */
   color: #000000;
-  border-radius: 0 !important;
+  border-radius: 10px !important;
   /* Sharp square badge */
   width: 20px;
   height: 20px;
@@ -493,7 +493,7 @@
   border: 1px solid #A1C4FD;
   color: #ffffff;
   padding: 2px 6px;
-  border-radius: 0 !important;
+  border-radius: 15px !important;
   font-size: 11px;
   font-weight: bold;
   white-space: nowrap;
