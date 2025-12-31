@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: #000000;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -355,12 +355,13 @@
 }
 
 .title-animation-canvas {
-  width: 250px;
-  /* 크기 확대 (200px -> 250px) */
+  width: 300px;
+  /* GIF 크기 확대 */
   height: auto;
   image-rendering: auto;
   /* 부드럽게 */
-  /* filter removed for original color */
+  filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
+  /* 보라색 글로우 효과 */
 }
 
 .game-title-text-overlay {

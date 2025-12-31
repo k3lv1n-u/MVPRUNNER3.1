@@ -31,7 +31,7 @@ body {
   left: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000000;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);

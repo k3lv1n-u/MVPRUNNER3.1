@@ -7,86 +7,12 @@ import DeviceCheckLoading from './DeviceCheckLoading';
 import soundManager from '../utils/soundManager';
 import ReferralButton from './ReferralButton';
 
-// 타이틀 애니메이션 컴포넌트
+// 타이틀 애니메이션 컴포넌트 (GIF)
 const TitleAnimation = () => {
-  const canvasRef = React.useRef(null);
-  const [frames, setFrames] = useState([]);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const imageRef = React.useRef(new Image());
-  const requestRef = React.useRef();
-  const frameIndexRef = React.useRef(0);
-  const frameCounterRef = React.useRef(0);
-
-  useEffect(() => {
-    // JSON 로드
-    fetch('/title.json')
-      .then(res => res.json())
-      .then(data => {
-        setFrames(data);
-      })
-      .catch(err => console.error('Failed to load title.json:', err));
-
-    // 이미지 로드
-    imageRef.current.src = '/titleanim.png';
-    imageRef.current.onload = () => setImageLoaded(true);
-  }, []);
-
-  const animate = React.useCallback(() => {
-    if (!canvasRef.current || !frames.length || !imageLoaded) return;
-
-    const ctx = canvasRef.current.getContext('2d');
-    const width = canvasRef.current.width;
-    const height = canvasRef.current.height;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, width, height);
-
-    // Enable smoothing for softer look as requested
-    ctx.imageSmoothingEnabled = true;
-
-    const currentFrame = frames[frameIndexRef.current];
-    if (currentFrame) {
-      // 캔버스 중앙에 배치
-      // 원본 프레임 크기 비율 유지하면서 캔버스에 맞춤 (약간의 여백)
-      const padding = 10;
-      const targetHeight = height - (padding * 2);
-      const scale = targetHeight / currentFrame.height;
-      const targetWidth = currentFrame.width * scale;
-
-      const x = (width - targetWidth) / 2;
-      const y = (height - targetHeight) / 2;
-
-      ctx.drawImage(
-        imageRef.current,
-        currentFrame.x, currentFrame.y,
-        currentFrame.width, currentFrame.height,
-        x, y,
-        targetWidth, targetHeight
-      );
-    }
-
-    // 프레임 업데이트 (속도 조절: 6프레임마다 갱신 - 더 느리게)
-    frameCounterRef.current += 1;
-    if (frameCounterRef.current >= 6) {
-      frameCounterRef.current = 0;
-      frameIndexRef.current = (frameIndexRef.current + 1) % frames.length;
-    }
-
-    requestRef.current = requestAnimationFrame(animate);
-  }, [frames, imageLoaded]);
-
-  useEffect(() => {
-    if (frames.length > 0 && imageLoaded) {
-      requestRef.current = requestAnimationFrame(animate);
-    }
-    return () => cancelAnimationFrame(requestRef.current);
-  }, [frames, imageLoaded, animate]);
-
   return (
-    <canvas
-      ref={canvasRef}
-      width={220}
-      height={260}
+    <img
+      src="/sprite-max-px-36.gif"
+      alt="MVP Runner"
       className="title-animation-canvas"
     />
   );

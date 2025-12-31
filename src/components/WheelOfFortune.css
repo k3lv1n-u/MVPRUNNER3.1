@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: #000000;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
   position: fixed;
   top: 0;
   left: 0;

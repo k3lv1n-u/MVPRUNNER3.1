@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000000;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
 }
 
 /* 게임 플레이 중 래퍼 - 모바일: 실제 크기 사용 */
@@ -61,7 +61,7 @@
 .game-canvas {
   border: none;
   border-radius: 0 !important;
-  background: #000000;
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
   display: block;
   margin: 0;
   padding: 0;
@@ -100,11 +100,13 @@
 }
 
 .title-animation-canvas {
-  width: 250px;
-  /* 크기 확대 (200px -> 250px) */
+  width: 300px;
+  /* GIF 크기 확대 */
   height: auto;
-  /* image-rendering: pixelated; 제거하여 부드럽게 처리 */
-  /* filter 제거: 원본 색상 사용 */
+  image-rendering: auto;
+  /* 부드럽게 */
+  filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
+  /* 보라색 글로우 효과 */
 }
 
 /* PC 웹 환경 */
