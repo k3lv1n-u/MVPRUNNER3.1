@@ -1,0 +1,523 @@
+/* 모바일 우선 디자인 - 텔레그램 모바일 크기 기준 */
+.wheel-container {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  padding-top: calc(20px + env(safe-area-inset-top, 0));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0));
+  box-sizing: border-box;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
+  position: relative;
+}
+
+/* Stars handled globally */
+.stars-background {
+  display: none;
+}
+
+/* 헤더 */
+.wheel-header {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 10;
+}
+
+.wheel-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+/* TOP-1 MVP 배지 */
+.top-badge {
+  width: 85px;
+  height: 85px;
+  background: #1a1a00;
+  border: 1px solid #FFD700;
+  border-radius: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.badge-content {
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.badge-text-top {
+  font-size: 15px;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.badge-text-bottom {
+  font-size: 20px;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+}
+
+/* 휠 프레임 */
+.wheel-frame {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  padding: 18px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 10;
+}
+
+.wheel-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50% !important;
+  /* Wheel itself needs to be round */
+  overflow: visible;
+}
+
+/* 포인터 */
+.wheel-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 35px solid #FFD700;
+  z-index: 20;
+}
+
+/* SVG 휠 */
+.wheel-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wheel-group {
+  transform-origin: 150px 150px;
+}
+
+.wheel-segment-path {
+  transition: opacity 0.2s ease;
+}
+
+.segment-text {
+  pointer-events: none;
+  user-select: none;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 결과 표시 */
+.prize-result {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 20px;
+  animation: prize-appear 0.4s ease-out;
+  z-index: 10;
+}
+
+@keyframes prize-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.prize-message {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.prize-icon {
+  font-size: 40px;
+}
+
+.prize-text {
+  flex: 1;
+}
+
+.prize-label {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.prize-amount {
+  font-size: 20px;
+  font-weight: 900;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.crypto-payment-notice {
+  margin-top: 15px;
+  padding: 12px;
+  background: #001a00;
+  border: 1px solid #00ff00;
+  border-radius: 0 !important;
+}
+
+.crypto-notice-text {
+  font-size: 14px;
+  color: #00ff00;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.crypto-notice-amount {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* 프로모션 코드 섹션 */
+.promo-code-section {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 10;
+}
+
+.promo-code-content {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  padding: 30px 24px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.promo-code-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.promo-code-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.promo-code-input {
+  width: 100%;
+  padding: 16px 20px;
+  background: #000000;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.promo-code-input::placeholder {
+  color: #444444;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.promo-code-input:focus {
+  outline: none;
+  border-color: #ffffff;
+  background: #111111;
+}
+
+.promo-code-error {
+  color: #ff4444;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+.promo-code-submit-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+.promo-code-submit-btn:hover {
+  background: #222222;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.promo-code-submit-btn:active {
+  transform: translateY(0);
+  background: #333333;
+}
+
+/* 스핀 버튼 */
+.spin-button {
+  width: 100%;
+  max-width: 320px;
+  padding: 18px 24px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 15px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+.spin-button:hover:not(:disabled) {
+  background: #222222;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.spin-button:active:not(:disabled) {
+  transform: translateY(0);
+  background: #333333;
+}
+
+.spin-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #444444;
+  color: #666666;
+}
+
+/* 뒤로가기 버튼 */
+.back-button {
+  width: 100%;
+  max-width: 320px;
+  padding: 16px 24px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+.back-button:hover:not(:disabled) {
+  background: #222222;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.back-button:active:not(:disabled) {
+  transform: translateY(0);
+  background: #333333;
+}
+
+.back-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 작은 화면 (360px 이하) */
+@media (max-width: 360px) {
+  .promo-code-content {
+    padding: 24px 20px;
+  }
+
+  .promo-code-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .promo-code-input {
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+
+  .promo-code-submit-btn {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .wheel-title {
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+
+  .top-badge {
+    width: 65px;
+    height: 65px;
+  }
+
+  .badge-text-top {
+    font-size: 12px;
+  }
+
+  .badge-text-bottom {
+    font-size: 16px;
+  }
+
+  .wheel-frame {
+    max-width: 280px;
+    padding: 15px;
+  }
+
+  .spin-button {
+    font-size: 18px;
+    padding: 16px 20px;
+    letter-spacing: 1.5px;
+  }
+
+  .prize-amount {
+    font-size: 18px;
+  }
+}
+
+/* 가로 모드 스타일 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .promo-code-section {
+    margin-bottom: 15px;
+  }
+
+  .promo-code-content {
+    padding: 20px 20px;
+  }
+
+  .promo-code-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .promo-code-input {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .promo-code-submit-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* 큰 모바일 화면 (414px 이상) */
+@media (min-width: 414px) {
+  .promo-code-content {
+    padding: 32px 28px;
+  }
+
+  .promo-code-title {
+    font-size: 24px;
+  }
+
+  .wheel-title {
+    font-size: 44px;
+  }
+
+  .top-badge {
+    width: 95px;
+    height: 95px;
+  }
+
+  .wheel-frame {
+    max-width: 360px;
+  }
+
+  .spin-button {
+    font-size: 22px;
+    padding: 20px 28px;
+  }
+}

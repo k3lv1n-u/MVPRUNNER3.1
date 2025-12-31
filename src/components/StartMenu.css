@@ -1,0 +1,401 @@
+/* 모바일 우선 디자인 - 텔레그램 모바일 크기 기준 */
+.start-menu {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  box-sizing: border-box;
+}
+
+/* PC 웹 환경 */
+.start-menu.pc-web {
+  width: 430px;
+  height: 932px;
+  max-width: 430px;
+  max-height: 932px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: 1px solid #333333;
+}
+
+/* Stars handled globally in index.css, but user requested twinkling stars here */
+.stars-background {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Purple Falling Stars */
+.purple-stars-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* 구름/별 배경보다 위에, UI보다 아래 */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.purple-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #9d00ff;
+  /* Bright Purple */
+  border-radius: 50%;
+  box-shadow: 0 0 4px #9d00ff, 0 0 8px #d480ff;
+  /* Purple Glow */
+  opacity: 0;
+}
+
+@keyframes purpleRain {
+  0% {
+    transform: translateY(-20px) translateX(0px);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(20px);
+    /* 화면 아래로 떨어지면서 약간 오른쪽으로 */
+    opacity: 0;
+  }
+}
+
+/* 상단 헤더 */
+.menu-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  z-index: 10;
+  box-sizing: border-box;
+  margin-top: env(safe-area-inset-top, 0);
+  background: #000000;
+  border-bottom: 1px solid #222222;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.telegram-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  min-width: 0;
+}
+
+.telegram-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50% !important;
+  /* User requested round avatar */
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid #333333;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  background: #222222;
+}
+
+.telegram-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.telegram-handle {
+  color: #00ffff;
+  /* Cyan username */
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.telegram-id {
+  color: #888888;
+  font-size: 11px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drop-btn {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  padding: 8px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drop-btn:active {
+  background: #222222;
+}
+
+.header-icon-btn {
+  width: 36px;
+  height: 36px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.header-icon-btn:active {
+  background: #222222;
+}
+
+.balance-icon-btn {
+  border-color: #333333;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px;
+  font-size: 11px;
+  min-width: 50px;
+}
+
+.balance-label {
+  color: #FFD700;
+  /* Gold */
+  font-weight: bold;
+  line-height: 1;
+  font-size: 11px;
+}
+
+.balance-value {
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1;
+  font-size: 13px;
+}
+
+.icon-bar {
+  font-size: 18px;
+  color: #FFD700;
+  /* Gold */
+  line-height: 1;
+  font-weight: bold;
+}
+
+/* 중앙 타이틀 영역 */
+.menu-character-area {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 10px 0;
+  gap: 20px;
+  z-index: 5;
+}
+
+.game-title-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  order: 1;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.game-title-animation-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.title-animation-canvas {
+  width: 250px;
+  /* 크기 확대 (200px -> 250px) */
+  height: auto;
+  image-rendering: auto;
+  /* 부드럽게 */
+  /* filter removed for original color */
+}
+
+.game-title-text-overlay {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: -20px;
+  /* 캔버스 위로 살짝 겹치게 혹은 바로 아래 붙게 조정 */
+  position: relative;
+  z-index: 10;
+  text-shadow: 2px 2px 0px #000000;
+  /* 가독성을 위한 그림자 */
+}
+
+/* 메뉴 버튼들 */
+.menu-buttons {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  padding: 0 16px 20px;
+  box-sizing: border-box;
+  margin-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.menu-btn.primary-btn {
+  border-color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 24px;
+  background: #000000;
+}
+
+.menu-btn:hover {
+  background: #222222;
+  border-color: #ffffff;
+  transform: none;
+}
+
+.menu-btn:active {
+  background: #333333;
+  transform: none;
+}
+
+.shop-icon {
+  font-size: 18px;
+  line-height: 1;
+  color: #FFD700;
+  /* Gold */
+}

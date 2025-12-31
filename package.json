@@ -1,0 +1,73 @@
+{
+  "name": "mvp-runner",
+  "version": "1.0.0",
+  "description": "MVP Runner Game - Full Stack Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "npm run build:dev && nodemon server.js",
+    "dev:all": "npx concurrently \"npm run dev:server\" \"npm run dev:client\" --names \"SERVER,CLIENT\" --prefix-colors \"cyan,yellow\"",
+    "all": "npm run dev:all",
+    "dev:server": "npm run build:dev && nodemon server.js",
+    "dev:client": "cross-env PORT=3000 BROWSER=none WDS_SOCKET_PORT=3000 react-scripts start",
+    "build": "react-scripts build",
+    "build:dev": "react-scripts build",
+    "build:client": "react-scripts build",
+    "build:prod": "cross-env NODE_ENV=production react-scripts build",
+    "start:prod": "npm run build:prod && cross-env NODE_ENV=production node server.js",
+    "init-db": "node scripts/initDatabase.js",
+    "client": "react-scripts start",
+    "server": "node server.js"
+  },
+  "keywords": [
+    "game",
+    "server",
+    "express",
+    "mongodb",
+    "react"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "chart.js": "^4.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "multer": "^1.4.5-lts.1",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.10.1",
+    "react-scripts": "5.0.1",
+    "telegraf": "^4.15.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1",
+    "typescript": "4.9.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

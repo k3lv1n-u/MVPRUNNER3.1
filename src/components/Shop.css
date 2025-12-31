@@ -1,0 +1,258 @@
+/* 모바일 우선 디자인 - 텔레그램 모바일 크기 기준 */
+.shop-container {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  box-sizing: border-box;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Stars handled globally */
+.stars-background {
+  display: none;
+}
+
+.shop-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.shop-header {
+  text-align: center;
+  padding: 20px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+}
+
+.shop-title {
+  font-size: 2.2em;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 15px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.balance-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.1em;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.balance-label {
+  color: #888888;
+}
+
+.balance-value {
+  font-weight: 700;
+  color: #FFD700;
+  /* Gold */
+}
+
+.balance-icon {
+  font-size: 1.3em;
+  color: #FFD700;
+}
+
+.loading-message,
+.error-message,
+.empty-message {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: #888888;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+}
+
+.error-message {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+.promo-codes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.promo-code-card {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.promo-code-card:hover {
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.promo-code-info {
+  flex: 1;
+}
+
+.promo-code-title {
+  font-size: 1.2em;
+  color: #00ffff;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.promo-code-details {
+  font-size: 0.9em;
+  color: #888888;
+  margin-bottom: 5px;
+}
+
+.promo-code-stock {
+  font-size: 0.85em;
+  color: #666666;
+}
+
+.promo-code-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #333333;
+}
+
+.promo-code-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 1.2em;
+  color: #FFD700;
+  font-weight: 700;
+  padding: 8px 0;
+}
+
+.price-icon {
+  font-size: 1.1em;
+}
+
+.purchase-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.purchase-btn:hover:not(:disabled) {
+  background: #222222;
+  transform: translateY(-2px);
+}
+
+.purchase-btn:active:not(:disabled) {
+  background: #333333;
+  transform: none;
+}
+
+.purchase-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #666666;
+  color: #888888;
+}
+
+.shop-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 20px 0;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.back-btn,
+.refresh-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 0 !important;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.back-btn:hover,
+.refresh-btn:hover {
+  background: #222222;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.back-btn:active,
+.refresh-btn:active {
+  background: #333333;
+  transform: none;
+}
+
+/* Mobile Portrait */
+@media (max-width: 768px) and (orientation: portrait) {
+  .promo-code-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shop-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,275 @@
+.referral-button-container {
+    position: relative;
+}
+
+.referral-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+}
+
+.referral-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
+}
+
+.referral-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #333333;
+    background: #000000;
+}
+
+.referral-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 !important;
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    background: #222222;
+    border-color: #ffffff;
+}
+
+.referral-content {
+    padding: 20px;
+    overflow-y: auto;
+    background: #000000;
+}
+
+.referral-info {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    flex: 1;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-icon {
+    font-size: 24px;
+    color: #FFD700;
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-title {
+    font-size: 11px;
+    color: #888888;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.referral-code-section {
+    margin-bottom: 20px;
+}
+
+.code-label {
+    font-size: 12px;
+    color: #888888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.code-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    padding: 12px;
+}
+
+.code-value {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
+}
+
+.copy-code-btn {
+    background: #222222;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #ffffff;
+}
+
+.copy-code-btn:hover {
+    background: #333333;
+    border-color: #ffffff;
+}
+
+.referral-link-section {
+    margin-bottom: 15px;
+}
+
+.link-label {
+    font-size: 12px;
+    color: #888888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.link-display {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.link-input {
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
+}
+
+.link-input:focus {
+    outline: none;
+    border-color: #ffffff;
+    background: #000000;
+}
+
+.copy-link-btn {
+    background: #222222;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.copy-link-btn:hover {
+    background: #333333;
+    border-color: #ffffff;
+}
+
+.share-telegram-btn {
+    width: 100%;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 0 !important;
+    padding: 14px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.share-telegram-btn:hover {
+    background: #222222;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.share-telegram-btn:active {
+    transform: translateY(0);
+    background: #333333;
+}
+
+.telegram-icon {
+    font-size: 18px;
+    color: #0088cc;
+}
+
+.referral-description {
+    text-align: center;
+    font-size: 12px;
+    color: #666666;
+    line-height: 1.4;
+}
+
+.referral-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.referral-content::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+.referral-content::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 0 !important;
+}
+
+.referral-content::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+}

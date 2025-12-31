@@ -1,0 +1,11 @@
+/* 모바일 우선 App 스타일 */
+.App {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* 동적 뷰포트 높이 지원 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}

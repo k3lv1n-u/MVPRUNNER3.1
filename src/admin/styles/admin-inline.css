@@ -1,0 +1,470 @@
+/**
+ * index.html의 인라인 스타일을 분리한 CSS 파일
+ * 기존 index.html의 <style> 태그 내용을 그대로 유지
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #050507;
+  --bg-secondary: #0a0a0c;
+  --bg-tertiary: #0f0f12;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --border-color-bright: rgba(255, 255, 255, 0.3);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --accent-cyan: #00ff9d;
+  --accent-gray: #333333;
+  --star-bright: rgba(255, 255, 255, 0.95);
+  --star-medium: rgba(255, 255, 255, 0.7);
+  --star-dim: rgba(255, 255, 255, 0.5);
+}
+
+/* 선명한 밤하늘 배경 - 깊이감 있는 별들 */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 밝은 별들 레이어 (큰 별) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    /* 밝은 큰 별들 */
+    radial-gradient(2px 2px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px 2px at 28% 42%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(2px 2px at 45% 12%, rgba(255, 255, 255, 0.95), transparent),
+    radial-gradient(2px 2px at 62% 68%, rgba(255, 255, 255, 0.88), transparent),
+    radial-gradient(2px 2px at 78% 32%, rgba(255, 255, 255, 0.92), transparent),
+    radial-gradient(2px 2px at 88% 75%, rgba(255, 255, 255, 0.87), transparent),
+    radial-gradient(2px 2px at 35% 88%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px 2px at 55% 55%, rgba(255, 255, 255, 0.93), transparent),
+    radial-gradient(2px 2px at 8% 92%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(2px 2px at 92% 8%, rgba(255, 255, 255, 0.91), transparent),
+    radial-gradient(2px 2px at 18% 65%, rgba(255, 255, 255, 0.89), transparent),
+    radial-gradient(2px 2px at 72% 22%, rgba(255, 255, 255, 0.94), transparent),
+    /* 중간 크기 별들 */
+    radial-gradient(1px 1px at 22% 28%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 38% 52%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 52% 18%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.68), transparent),
+    radial-gradient(1px 1px at 82% 38%, rgba(255, 255, 255, 0.72), transparent),
+    radial-gradient(1px 1px at 15% 82%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 48% 48%, rgba(255, 255, 255, 0.73), transparent),
+    radial-gradient(1px 1px at 75% 15%, rgba(255, 255, 255, 0.71), transparent),
+    radial-gradient(1px 1px at 32% 78%, rgba(255, 255, 255, 0.69), transparent),
+    radial-gradient(1px 1px at 58% 62%, rgba(255, 255, 255, 0.74), transparent),
+    /* 작은 별들 */
+    radial-gradient(0.5px 0.5px at 25% 35%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(0.5px 0.5px at 42% 58%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(0.5px 0.5px at 58% 25%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(0.5px 0.5px at 72% 68%, rgba(255, 255, 255, 0.48), transparent),
+    radial-gradient(0.5px 0.5px at 18% 72%, rgba(255, 255, 255, 0.52), transparent),
+    radial-gradient(0.5px 0.5px at 85% 42%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(0.5px 0.5px at 35% 15%, rgba(255, 255, 255, 0.47), transparent),
+    radial-gradient(0.5px 0.5px at 65% 85%, rgba(255, 255, 255, 0.53), transparent),
+    radial-gradient(0.5px 0.5px at 8% 48%, rgba(255, 255, 255, 0.46), transparent),
+    radial-gradient(0.5px 0.5px at 95% 28%, rgba(255, 255, 255, 0.51), transparent),
+    radial-gradient(0.5px 0.5px at 48% 92%, rgba(255, 255, 255, 0.49), transparent),
+    radial-gradient(0.5px 0.5px at 28% 8%, rgba(255, 255, 255, 0.54), transparent);
+  background-size: 100% 100%;
+  background-position: 0% 0%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 미묘한 은하수 효과 */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.02) 20%, 
+      rgba(255, 255, 255, 0.03) 40%, 
+      rgba(255, 255, 255, 0.02) 60%, 
+      transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* 로그인 화면 스타일 */
+.login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-primary);
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 로그인 화면에도 별 배경 적용 */
+.login-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, var(--star-bright), transparent),
+    radial-gradient(2px 2px at 60% 70%, var(--star-bright), transparent),
+    radial-gradient(1px 1px at 40% 50%, var(--star-medium), transparent),
+    radial-gradient(1px 1px at 80% 20%, var(--star-medium), transparent),
+    radial-gradient(0.5px 0.5px at 30% 80%, var(--star-dim), transparent),
+    radial-gradient(0.5px 0.5px at 70% 40%, var(--star-dim), transparent),
+    radial-gradient(2px 2px at 50% 10%, var(--star-bright), transparent),
+    radial-gradient(1px 1px at 15% 60%, var(--star-medium), transparent),
+    radial-gradient(0.5px 0.5px at 85% 90%, var(--star-dim), transparent);
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.login-container {
+  background: rgba(10, 10, 12, 0.8);
+  border: 1px solid var(--border-color-bright);
+  padding: 60px 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.login-icon {
+  margin: 0 auto 40px;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+}
+
+.login-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1;
+}
+
+.login-title {
+  font-size: 11px;
+  font-weight: 200;
+  color: var(--text-primary);
+  margin: 0 0 50px 0;
+  letter-spacing: 4px;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.login-form {
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0;
+  color: var(--text-secondary);
+  z-index: 1;
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  stroke-width: 1;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px 0 12px 32px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 400;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-input::placeholder {
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.login-input:focus {
+  outline: none;
+  border-bottom-color: var(--border-color-bright);
+}
+
+.login-input:focus + .input-line {
+  width: 100%;
+}
+
+.input-line {
+  display: none;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  font-size: 11px;
+  font-weight: 400;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.forgot-password {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.forgot-password:hover {
+  color: var(--text-primary);
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.login-button:hover {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-button:active {
+  background: #0a0a0a;
+}
+
+.login-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #000000;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.register-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 400;
+  transition: color 0.2s;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.register-link:hover {
+  color: var(--text-primary);
+}
+
+.error-message {
+  background: rgba(10, 10, 12, 0.6);
+  border: 1px solid var(--border-color-bright);
+  padding: 12px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  font-size: 11px;
+  text-align: center;
+  font-weight: 400;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.register-form {
+  text-align: left;
+  width: 100%;
+}
+
+/* 모달 스타일 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  background: rgba(10, 10, 12, 0.95);
+  border: 1px solid var(--border-color-bright);
+  padding: 50px 40px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  z-index: 1;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.modal-header h2 {
+  font-size: 11px;
+  font-weight: 200;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: 4px;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.close-btn:hover {
+  color: var(--text-primary);
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 40px 20px;
+  }
+
+  .login-title {
+    font-size: 28px;
+  }
+
+  .login-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .modal-content {
+    padding: 40px 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 24px;
+  }
+}
+

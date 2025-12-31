@@ -1,0 +1,134 @@
+.account-blocked {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Stars handled globally */
+.stars-background {
+  display: none;
+}
+
+.account-blocked-content {
+  position: relative;
+  z-index: 1;
+  background: #111111;
+  border: 1px solid #ff0000;
+  border-radius: 0 !important;
+  padding: 40px;
+  max-width: 90%;
+  width: 500px;
+  text-align: center;
+}
+
+.account-blocked-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.account-blocked-title {
+  color: #ff0000;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.account-blocked-message {
+  color: #ffffff;
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  line-height: 1.6;
+}
+
+.account-blocked-submessage {
+  color: #ff4444;
+  font-size: 16px;
+  margin: 0 0 25px 0;
+  line-height: 1.5;
+}
+
+.account-blocked-reason {
+  background: #1a0000;
+  border: 1px solid #ff0000;
+  border-radius: 0 !important;
+  padding: 15px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.reason-label {
+  color: #ff4444;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+}
+
+.reason-text {
+  color: #cccccc;
+  font-size: 13px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
+}
+
+.account-blocked-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #333333;
+}
+
+.account-blocked-footer p {
+  color: #888888;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+  .account-blocked-content {
+    padding: 30px 20px;
+    width: 95%;
+  }
+
+  .account-blocked-icon {
+    font-size: 60px;
+  }
+
+  .account-blocked-title {
+    font-size: 24px;
+  }
+
+  .account-blocked-message {
+    font-size: 16px;
+  }
+
+  .account-blocked-submessage {
+    font-size: 14px;
+  }
+}
