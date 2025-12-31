@@ -254,7 +254,15 @@ const StartMenu = ({
   }
 
   return (
-    <div className={`start-menu ${isLandscape ? 'landscape-mode' : ''}`}>
+    <div 
+      className={`start-menu ${isLandscape ? 'landscape-mode' : ''}`}
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/christmas-village.png)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       {/* 밤하늘 별 배경 */}
       <div className="stars-background">
         {[...Array(50)].map((_, i) => (

@@ -54,21 +54,15 @@
 .christmas-btn-red::before {
   content: '';
   position: absolute;
-  top: -6px;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: linear-gradient(to bottom,
-    #ffe4f0 0%,
-    #ffe4f0 30%,
-    #fff0f7 50%,
-    rgba(255, 240, 247, 0.8) 70%,
-    transparent 100%
-  );
-  filter: drop-shadow(0 2px 3px rgba(255, 182, 193, 0.4));
+  top: -5px;
+  left: -2px;
+  right: -2px;
+  height: 12px;
+  background: 
+    radial-gradient(ellipse 100px 15px at 50% 0%, #ffe4f0 0%, #fff0f7 40%, rgba(255, 240, 247, 0.6) 70%, transparent 100%);
+  filter: drop-shadow(0 2px 4px rgba(255, 182, 193, 0.5));
   z-index: 1;
   border-radius: 20px 20px 0 0;
-  clip-path: ellipse(100% 100% at 50% 0%);
 }
 
 .christmas-btn-red:hover {
@@ -94,21 +88,15 @@
 .christmas-btn-green::before {
   content: '';
   position: absolute;
-  top: -6px;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: linear-gradient(to bottom,
-    #e0f5ed 0%,
-    #e0f5ed 30%,
-    #ebf9f3 50%,
-    rgba(235, 249, 243, 0.8) 70%,
-    transparent 100%
-  );
-  filter: drop-shadow(0 2px 3px rgba(149, 217, 195, 0.4));
+  top: -5px;
+  left: -2px;
+  right: -2px;
+  height: 12px;
+  background: 
+    radial-gradient(ellipse 100px 15px at 50% 0%, #e0f5ed 0%, #ebf9f3 40%, rgba(235, 249, 243, 0.6) 70%, transparent 100%);
+  filter: drop-shadow(0 2px 4px rgba(149, 217, 195, 0.5));
   z-index: 1;
   border-radius: 20px 20px 0 0;
-  clip-path: ellipse(100% 100% at 50% 0%);
 }
 
 .christmas-btn-green:hover {
@@ -119,14 +107,10 @@
 
 /* 작은 버튼용 */
 .christmas-btn-small::before {
-  top: -6px !important;
-  height: 8px !important;
+  top: -4px !important;
+  height: 10px !important;
   background: 
-    radial-gradient(circle at 15% 50%, #ffe4f0 0%, #ffe4f0 45%, transparent 50%),
-    radial-gradient(circle at 45% 50%, #fff0f7 0%, #fff0f7 40%, transparent 45%),
-    radial-gradient(circle at 75% 50%, #ffe4f0 0%, #ffe4f0 48%, transparent 52%);
-  background-size: 25% 100%, 20% 100%, 22% 100% !important;
-  background-position: 10% 0, 40% 0, 70% 0 !important;
+    radial-gradient(ellipse 80px 12px at 50% 0%, #ffe4f0 0%, #fff0f7 40%, rgba(255, 240, 247, 0.6) 70%, transparent 100%) !important;
   border-radius: 15px 15px 0 0;
 }
 
