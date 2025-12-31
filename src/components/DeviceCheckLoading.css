@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
 
 .device-check-content {
   text-align: center;
-  color: #ffffff;
+  color: #333333;
 }
 
 .device-check-spinner {
@@ -28,19 +28,19 @@
   width: 100%;
   height: 100%;
   border: 4px solid transparent;
-  border-top-color: #ffffff;
-  border-radius: 0 !important;
+  border-top-color: #FF6B6B;
+  border-radius: 50% !important;
   animation: spin 1.5s linear infinite;
 }
 
 .spinner-ring:nth-child(1) {
   animation-delay: 0s;
-  border-top-color: #ffffff;
+  border-top-color: #FF8E53;
 }
 
 .spinner-ring:nth-child(2) {
   animation-delay: 0.5s;
-  border-top-color: #888888;
+  border-top-color: #A1C4FD;
   width: 70%;
   height: 70%;
   top: 15%;
@@ -49,7 +49,7 @@
 
 .spinner-ring:nth-child(3) {
   animation-delay: 1s;
-  border-top-color: #333333;
+  border-top-color: #C3CFE2;
   width: 50%;
   height: 50%;
   top: 25%;
@@ -69,7 +69,7 @@
 .device-check-message {
   font-size: 18px;
   font-weight: 500;
-  color: #ffffff;
+  color: #555555;
   letter-spacing: 0.5px;
   font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
 }
@@ -78,7 +78,7 @@
   display: inline-block;
   width: 20px;
   text-align: left;
-  color: #ffffff;
+  color: #777777;
 }
 
 /* 모바일 최적화 */

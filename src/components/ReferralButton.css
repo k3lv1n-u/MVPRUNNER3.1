@@ -41,7 +41,7 @@
 .referral-header h3 {
     margin: 0;
     font-size: 18px;
-    color: #ffffff;
+    color: #333333;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -49,7 +49,7 @@
 .close-btn {
     background: none;
     border: 1px solid transparent;
-    color: #ffffff;
+    color: #333333;
     font-size: 24px;
     cursor: pointer;
     padding: 0;
@@ -70,7 +70,7 @@
 .referral-content {
     padding: 20px;
     overflow-y: auto;
-    background: #000000;
+    background: #ffffff;
 }
 
 .referral-info {
@@ -109,7 +109,7 @@
 .info-value {
     font-size: 14px;
     font-weight: bold;
-    color: #ffffff;
+    color: #333333;
 }
 
 .referral-code-section {
@@ -137,7 +137,7 @@
     flex: 1;
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
+    color: #333333;
     letter-spacing: 2px;
     font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', Courier, monospace;
 }
@@ -154,7 +154,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s;
-    color: #ffffff;
+    color: #333333;
 }
 
 .copy-code-btn:hover {
@@ -184,7 +184,7 @@
     border: 1px solid #333333;
     border-radius: 0 !important;
     padding: 10px;
-    color: #ffffff;
+    color: #333333;
     font-size: 12px;
     width: 100%;
     box-sizing: border-box;
@@ -242,7 +242,7 @@
 
 .share-telegram-btn:active {
     transform: translateY(0);
-    background: #333333;
+    background: #E0E0E0;
 }
 
 .telegram-icon {
