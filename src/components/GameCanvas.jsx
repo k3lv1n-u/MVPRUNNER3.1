@@ -36,6 +36,7 @@ const GameCanvas = ({
   const [moneyBoostActive, setMoneyBoostActive] = useState(false);
   const [moneyBoostEndTime, setMoneyBoostEndTime] = useState(0);
   const [moneyBoostImagesLoaded, setMoneyBoostImagesLoaded] = useState(false);
+  const gifCharacterRef = useRef(null); // GIF 캐릭터 DOM 요소 참조
   // UI 업데이트 주기 제어 (React 상태 업데이트/콜백 빈도 줄이기)
   const lastUiUpdateRef = useRef(0);
   const UI_UPDATE_INTERVAL_MS = 150;
@@ -193,17 +194,9 @@ const GameCanvas = ({
     gameStateRef.current.jumpFramesLoaded = true;
     checkImagesLoaded();
 
-    // Load GIF character animation
-    characterSprite.onload = () => {
-      gameStateRef.current.spriteLoaded = true;
-      checkImagesLoaded();
-    };
-    characterSprite.onerror = () => {
-      console.error('Character GIF를 로드할 수 없습니다.');
-      gameStateRef.current.spriteLoaded = true;
-      checkImagesLoaded();
-    };
-    characterSprite.src = '/sprite-256px-36 (2).gif';
+    // GIF는 DOM 요소로 로드되므로 즉시 로드 완료 처리
+    gameStateRef.current.spriteLoaded = true;
+    checkImagesLoaded();
 
     loadImageWithProgress(idleSprite, 'idle', () => {
       gameStateRef.current.idleLoaded = true;
@@ -624,32 +617,35 @@ const GameCanvas = ({
       dino.y = y;
     }
 
-    // GIF를 단순하게 그리기 - 브라우저가 자동으로 애니메이션 처리
-    if (state.spriteLoaded && characterSpriteRef.current.complete && characterSpriteRef.current.naturalHeight !== 0) {
-      // GIF의 원본 크기를 가져와서 적절하게 스케일링
-      const gifWidth = characterSpriteRef.current.naturalWidth;
-      const gifHeight = characterSpriteRef.current.naturalHeight;
+    // GIF 애니메이션을 DOM 요소로 표시 (Canvas에서는 GIF 애니메이션 불가)
+    if (gifCharacterRef.current && state.spriteLoaded) {
+      const gifWidth = 70;  // 이전 캐릭터 크기
+      const gifHeight = 70;
       
-      // 적절한 표시 크기 (원본 크기를 유지하면서 게임에 맞게 조정)
-      const displayWidth = 100;  // 적절한 크기로 조정 가능
-      const displayHeight = (gifHeight / gifWidth) * displayWidth;
+      // Canvas의 실제 픽셀 위치를 CSS 픽셀로 변환
+      const canvasRect = canvas.getBoundingClientRect();
+      const logicalWidth = canvas.width / (window.devicePixelRatio || 1);
+      const logicalHeight = canvas.height / (window.devicePixelRatio || 1);
       
       // 캐릭터를 중앙 하단에 정렬
-      const renderX = x + (w - displayWidth) / 2;
-      const renderY = y + h - displayHeight;
+      const renderX = x + (w - gifWidth) / 2;
+      const renderY = y + h - gifHeight;
       
-      // GIF 그리기 (브라우저가 자동으로 애니메이션 재생)
-      ctx.drawImage(
-        characterSpriteRef.current,
-        Math.floor(renderX),
-        Math.floor(renderY),
-        Math.floor(displayWidth),
-        Math.floor(displayHeight)
-      );
-    } else {
-      // Fallback: 이미지 로드 전 플레이스홀더
-      ctx.fillStyle = '#333';
-      ctx.fillRect(x, y, w, h);
+      // Canvas 내 논리적 좌표를 화면 좌표로 변환
+      const scaleX = canvasRect.width / logicalWidth;
+      const scaleY = canvasRect.height / logicalHeight;
+      
+      const screenX = canvasRect.left + (renderX * scaleX);
+      const screenY = canvasRect.top + (renderY * scaleY);
+      const screenWidth = gifWidth * scaleX;
+      const screenHeight = gifHeight * scaleY;
+      
+      // GIF 요소 위치 업데이트
+      gifCharacterRef.current.style.left = `${screenX}px`;
+      gifCharacterRef.current.style.top = `${screenY}px`;
+      gifCharacterRef.current.style.width = `${screenWidth}px`;
+      gifCharacterRef.current.style.height = `${screenHeight}px`;
+      gifCharacterRef.current.style.display = 'block';
     }
 
     // 디버그용 히트박스 (필요시 주석 해제)
@@ -1190,6 +1186,10 @@ const GameCanvas = ({
       if (state.animationFrameId !== null) {
         cancelAnimationFrame(state.animationFrameId);
         state.animationFrameId = null;
+      }
+      // 게임이 멈추면 GIF 캐릭터 숨기기
+      if (gifCharacterRef.current) {
+        gifCharacterRef.current.style.display = 'none';
       }
     }
   }, [gameReady, gameRunning, onScoreUpdate, onGameOver, imagesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -1864,6 +1864,20 @@ const GameCanvas = ({
         className={`game-canvas ${isGamePlaying ? 'game-playing' : ''} ${isPCWebEnvironment ? 'pc-web' : ''} ${!isLandscape ? 'portrait-mode' : ''}`}
         width={isGamePlaying ? (isPCWebEnvironment ? 932 : (window.visualViewport?.width || window.innerWidth)) : (isPCWebEnvironment ? 430 : (window.visualViewport?.width || window.innerWidth))}
         height={isGamePlaying ? (isPCWebEnvironment ? 430 : (window.visualViewport?.height || window.innerHeight)) : (isPCWebEnvironment ? 932 : (window.visualViewport?.height || window.innerHeight))}
+      />
+
+      {/* GIF Character Overlay - Animated character */}
+      <img
+        ref={gifCharacterRef}
+        src="/sprite-256px-36 (2).gif"
+        alt="Character"
+        style={{
+          position: 'fixed',
+          pointerEvents: 'none',
+          display: 'none',
+          imageRendering: 'pixelated',
+          zIndex: 10
+        }}
       />
 
       {/* Protection Overlay - Blocks context menu and handles game input */}
