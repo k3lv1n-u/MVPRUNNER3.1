@@ -31,10 +31,10 @@ body {
   left: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
+  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
   background-image:
-    radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    radial-gradient(rgba(255, 182, 193, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(255, 182, 193, 0.1) 1px, transparent 1px);
   background-size: 550px 550px, 350px 350px;
   background-position: 0 0, 200px 200px;
   color: #ffffff;

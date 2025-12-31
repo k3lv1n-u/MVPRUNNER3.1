@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
+  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
   overflow: hidden;
   z-index: 1000;
 }
@@ -53,10 +53,11 @@
 .news-title {
   font-size: 32px;
   font-weight: bold;
-  color: #ffffff;
+  color: #d63384;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(255, 182, 193, 0.3);
 }
 
 .news-body {

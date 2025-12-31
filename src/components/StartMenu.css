@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: linear-gradient(180deg, #2d1b4e 0%, #1a0f3a 50%, #0f0622 100%);
+  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,8 @@
 
 /* Stars handled globally in index.css, but user requested twinkling stars here */
 .stars-background {
-  display: block;
+  display: none;
+  /* 배경 이미지가 있으므로 별 숨김 */
   position: absolute;
   top: 0;
   left: 0;
@@ -355,9 +356,10 @@
 }
 
 .title-animation-canvas {
-  width: 300px;
-  /* GIF 크기 확대 */
+  width: auto;
   height: auto;
+  max-width: 200px;
+  /* 원래 크기 유지 */
   image-rendering: auto;
   /* 부드럽게 */
   filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
@@ -397,10 +399,10 @@
 .menu-btn {
   width: 100%;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #165b33 0%, #0a3d1f 50%, #165b33 100%);
+  background: linear-gradient(135deg, #b8e6d5 0%, #95d9c3 50%, #b8e6d5 100%);
   border: none;
-  border-radius: 0 !important;
-  color: #ffffff;
+  border-radius: 20px !important;
+  color: #2d6a4f;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -410,6 +412,8 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 15px rgba(184, 230, 213, 0.5);
   justify-content: center;
   gap: 8px;
   position: relative;
@@ -439,11 +443,12 @@
 }
 
 .menu-btn.primary-btn {
-  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
   font-size: 16px;
   font-weight: 700;
   padding: 18px 24px;
-  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 179, 198, 0.5);
+  color: #d63384;
 }
 
 /* 기본 버튼 위에 눈 효과 */
@@ -468,14 +473,14 @@
 }
 
 .menu-btn:hover {
-  background: linear-gradient(135deg, #1a6b3d 0%, #0e4a27 50%, #1a6b3d 100%);
-  box-shadow: 0 6px 20px rgba(22, 91, 51, 0.6);
+  background: linear-gradient(135deg, #c9f0e1 0%, #a8e4d2 50%, #c9f0e1 100%);
+  box-shadow: 0 6px 20px rgba(184, 230, 213, 0.7);
   transform: translateY(-2px);
 }
 
 .menu-btn.primary-btn:hover {
-  background: linear-gradient(135deg, #d4243e 0%, #9b0000 100%);
-  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.6);
+  background: linear-gradient(135deg, #ffc8d7 0%, #ffa3bf 100%);
+  box-shadow: 0 6px 20px rgba(255, 179, 198, 0.7);
 }
 
 .menu-btn:active {
