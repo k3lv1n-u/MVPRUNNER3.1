@@ -278,12 +278,17 @@ body::after {
 }
 
 .forgot-password {
+  background: none;
+  border: none;
+  padding: 0;
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 400;
   transition: color 0.2s;
   font-family: 'Inter', sans-serif;
   white-space: nowrap;
+  cursor: pointer;
+  font-size: inherit;
 }
 
 .forgot-password:hover {
@@ -328,6 +333,9 @@ body::after {
 }
 
 .register-link {
+  background: none;
+  border: none;
+  padding: 0;
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 11px;
@@ -336,6 +344,7 @@ body::after {
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .register-link:hover {

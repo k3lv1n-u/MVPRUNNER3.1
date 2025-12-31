@@ -3,7 +3,7 @@
  * 기존 index.html의 loadAdmins, approveAdmin, deleteAdmin 함수를 React로 구현
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import apiClient from '../api/client';
 import { API_ENDPOINTS } from '../api/endpoints';
 import { Admin } from '../types';
@@ -16,7 +16,7 @@ const AdminManagementTab: React.FC = () => {
   const [error, setError] = useState('');
   const [roleSelects, setRoleSelects] = useState<Record<string, string>>({});
 
-  const loadAdmins = async () => {
+  const loadAdmins = useCallback(async () => {
     setLoading(true);
     setError('');
 
@@ -58,11 +58,11 @@ const AdminManagementTab: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentUser?.role]);
 
   useEffect(() => {
     loadAdmins();
-  }, []);
+  }, [loadAdmins]);
 
   const handleUpdateRole = async (adminId: string, newRole: string) => {
     try {

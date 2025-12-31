@@ -192,15 +192,15 @@ export const LoginPage: React.FC = () => {
                 />
                 <span>Remember me</span>
               </label>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="forgot-password"
                 onClick={(e) => {
                   e.preventDefault();
                 }}
               >
                 Forgot Password?
-              </a>
+              </button>
             </div>
 
             <button
@@ -213,8 +213,8 @@ export const LoginPage: React.FC = () => {
           </form>
 
           <div className="login-footer">
-            <a
-              href="#"
+            <button
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 setShowRegisterModal(true);
@@ -223,7 +223,7 @@ export const LoginPage: React.FC = () => {
               className="register-link"
             >
               Don't have an account? Register
-            </a>
+            </button>
           </div>
         </div>
       </div>
