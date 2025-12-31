@@ -434,7 +434,7 @@
 /* 작은 화면 대응 */
 @media (max-width: 380px) {
   .promo-codes-list {
-    /* Keep 2 columns even on small screens */
+    /* Keep 2 columns in mobile portrait mode */
     /* grid-template-columns: 1fr; */
   }
 
