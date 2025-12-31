@@ -38,6 +38,11 @@
   z-index: 10;
 }
 
+.wheel-message-box.claimed {
+  background: #E8F5E9;
+  border-color: #4CAF50;
+}
+
 .wheel-title {
   font-size: 38px;
   font-weight: 900;

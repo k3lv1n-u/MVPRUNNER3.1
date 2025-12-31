@@ -124,7 +124,7 @@ const GameCanvas = ({
   const shieldActiveRef = useRef(new Image());
 
 
-  const obstacleBaseWidth = 40; // Reverted to original 40px
+  const obstacleBaseWidth = 80; // Increased size for better visibility
   const coinBaseWidth = 30; // Reverted to original 30px
 
   // 이미지 로드 상태 확인

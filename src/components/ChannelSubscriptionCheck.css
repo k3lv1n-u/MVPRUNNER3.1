@@ -139,8 +139,8 @@
 }
 
 .channel-item.subscribed {
-  background: #001a00;
-  border-color: #00ff00;
+  background: #E8F5E9;
+  border-color: #4CAF50;
 }
 
 .channel-item:hover {
@@ -199,23 +199,23 @@
 }
 
 .status-icon.subscribed {
-  background: #00ff00;
-  color: #000000;
-  border: 1px solid #00ff00;
+  background: #4CAF50;
+  color: #ffffff;
+  border: 1px solid #4CAF50;
 }
 
 .status-icon.not-subscribed {
-  background: #222222;
-  color: #666666;
-  border: 1px solid #333333;
+  background: #F5F7FA;
+  color: #999999;
+  border: 1px solid #E0E0E0;
 }
 
 .channel-join-btn {
   padding: 10px 20px;
-  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   border: none;
   border-radius: 15px !important;
-  color: #d63384;
+  color: #ffffff;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
@@ -235,10 +235,10 @@
 
 .channel-subscribed-label {
   padding: 10px 20px;
-  background: #001a00;
-  border: 1px solid #00ff00;
-  border-radius: 0 !important;
-  color: #00ff00;
+  background: #E8F5E9;
+  border: 1px solid #4CAF50;
+  border-radius: 15px !important;
+  color: #2E7D32;
   font-size: 14px;
   font-weight: bold;
   flex-shrink: 0;
@@ -309,12 +309,12 @@
 }
 
 .channel-check-error {
-  background: #1a0000;
-  border: 1px solid #ff0000;
-  border-radius: 0 !important;
+  background: #FFEBEE;
+  border: 1px solid #EF5350;
+  border-radius: 15px !important;
   padding: 15px;
   margin: 20px 0;
-  color: #ff4444;
+  color: #D32F2F;
   text-align: center;
   font-size: 14px;
 }
@@ -323,9 +323,9 @@
   text-align: center;
   margin: 20px 0;
   padding: 15px;
-  border-radius: 0 !important;
-  background: #111111;
-  border: 1px solid #333333;
+  border-radius: 15px !important;
+  background: #F5F7FA;
+  border: 1px solid #E0E0E0;
 }
 
 .hint-success {

@@ -146,7 +146,7 @@ const StartMenu = ({
             if (onAccountBlocked) {
               onAccountBlocked(reason);
             }
-          } 
+          }
         } else {
           // telegramUser.id가 없으면 기본 검증만 수행
           if (fingerprint.platform === 'unknown') {
@@ -254,7 +254,7 @@ const StartMenu = ({
   }
 
   return (
-    <div 
+    <div
       className={`start-menu ${isLandscape ? 'landscape-mode' : ''}`}
       style={{
         backgroundImage: `url(${process.env.PUBLIC_URL}/christmas-village.png)`,
@@ -298,44 +298,24 @@ const StartMenu = ({
       {/* 상단 헤더 */}
       <div className="menu-header">
         <div className="header-left">
-          <div className="telegram-profile">
-            <div className="telegram-avatar">
-              {telegramUser.avatar ? (
-                <>
-                  <img
-                    src={telegramUser.avatar}
-                    alt="Avatar"
-                    className="avatar-image"
-                    draggable="false"
-                    onContextMenu={(e) => e.preventDefault()}
-                    onDragStart={(e) => e.preventDefault()}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div
-                    className="image-overlay"
-                    onContextMenu={(e) => e.preventDefault()}
-                    onDragStart={(e) => e.preventDefault()}
-                    onTouchStart={(e) => e.preventDefault()}
-                    onTouchEnd={(e) => e.preventDefault()}
-                    onTouchMove={(e) => e.preventDefault()}
-                  />
-                </>
-              ) : null}
-              <div className="avatar-placeholder" style={{ display: telegramUser.avatar ? 'none' : 'flex' }}>
+          <div className="telegram-avatar">
+            {telegramUser.avatar ? (
+              <img
+                src={telegramUser.avatar}
+                alt="Avatar"
+                className="avatar-image"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            ) : (
+              <div className="avatar-placeholder">
                 {telegramUser.username ? telegramUser.username.charAt(0).toUpperCase() : 'U'}
               </div>
-            </div>
-            <div className="telegram-details">
-              <div className="telegram-handle">
-                @{telegramUser.username || 'username'}
-              </div>
-              {telegramUser.id && (
-                <div className="telegram-id">ID: {telegramUser.id}</div>
-              )}
-            </div>
+            )}
           </div>
         </div>
         <div className="header-right">
@@ -344,7 +324,6 @@ const StartMenu = ({
             telegramId={telegramUser.id}
             username={telegramUser.username}
             referralCode={telegramUser.referralCode}
-            botUsername={telegramUser.botUsername}
           />
           {/* 프로모션 코드 소식 버튼 */}
           <button className="header-icon-btn" onClick={() => { soundManager.playButtonClick(); onShowPromoCode(); }} title="Промокод">
@@ -364,48 +343,52 @@ const StartMenu = ({
             <span className="icon-settings">⚙️</span>
           </button>
         </div>
-      </div>
+      </div >
 
       {/* 타이틀 영역 - 가로모드에서 숨김 */}
-      {!isLandscape && (
-        <div className="menu-character-area">
-          {/* 타이틀 애니메이션 & 텍스트 */}
-          <div className="game-title-container">
-            <div className="game-title-animation-wrapper">
-              <TitleAnimation />
+      {
+        !isLandscape && (
+          <div className="menu-character-area">
+            {/* 타이틀 애니메이션 & 텍스트 */}
+            <div className="game-title-container">
+              <div className="game-title-animation-wrapper">
+                <TitleAnimation />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* 에뮬레이터 경고 메시지 */}
-      {(emulatorDetected || accountBlocked) && (
-        <div style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          background: 'rgba(0, 0, 0, 0.9)',
-          color: '#ff0000',
-          padding: '20px',
-          borderRadius: '10px',
-          zIndex: 10000,
-          textAlign: 'center',
-          border: '2px solid #ff0000',
-          maxWidth: '90%'
-        }}>
-          <h2 style={{ margin: '0 0 10px 0', color: '#ff0000' }}>🚫 Эмулятор обнаружен</h2>
-          <p style={{ margin: '0 0 10px 0' }}>Использование эмуляторов запрещено.</p>
-          {accountBlocked && (
-            <p style={{ margin: '0 0 10px 0', color: '#ff6b6b' }}>
-              Ваш аккаунт был заблокирован.
+      {
+        (emulatorDetected || accountBlocked) && (
+          <div style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'rgba(0, 0, 0, 0.9)',
+            color: '#ff0000',
+            padding: '20px',
+            borderRadius: '10px',
+            zIndex: 10000,
+            textAlign: 'center',
+            border: '2px solid #ff0000',
+            maxWidth: '90%'
+          }}>
+            <h2 style={{ margin: '0 0 10px 0', color: '#ff0000' }}>🚫 Эмулятор обнаружен</h2>
+            <p style={{ margin: '0 0 10px 0' }}>Использование эмуляторов запрещено.</p>
+            {accountBlocked && (
+              <p style={{ margin: '0 0 10px 0', color: '#ff6b6b' }}>
+                Ваш аккаунт был заблокирован.
+              </p>
+            )}
+            <p style={{ margin: '0', fontSize: '12px', color: '#999' }}>
+              {emulatorReason}
             </p>
-          )}
-          <p style={{ margin: '0', fontSize: '12px', color: '#999' }}>
-            {emulatorReason}
-          </p>
-        </div>
-      )}
+          </div>
+        )
+      }
 
       {/* 메뉴 버튼들 */}
       <div className="menu-buttons">
@@ -430,7 +413,7 @@ const StartMenu = ({
           О НАС
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 export default StartMenu;
