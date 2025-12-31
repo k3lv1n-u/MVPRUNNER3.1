@@ -12,25 +12,26 @@
 }
 
 :root {
-  --bg-primary: #fff5f7;
-  --bg-secondary: #ffe4e9;
-  --bg-tertiary: #ffd4dc;
-  --border-color: rgba(255, 179, 198, 0.3);
-  --border-color-bright: rgba(255, 179, 198, 0.6);
-  --text-primary: #d63384;
-  --text-secondary: rgba(214, 51, 132, 0.8);
-  --text-tertiary: rgba(139, 90, 125, 0.7);
-  --accent-cyan: #ff6b9d;
-  --accent-gray: #ffb3c6;
-  --star-bright: rgba(255, 182, 193, 0.4);
-  --star-medium: rgba(255, 192, 203, 0.3);
-  --star-dim: rgba(255, 228, 225, 0.2);
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F0F8FF;
+  --bg-tertiary: #E3FDFD;
+  --border-color: #C3CFE2;
+  --border-color-bright: #A1C4FD;
+  --text-primary: #333333;
+  --text-secondary: #5d6d7e;
+  --text-tertiary: #999999;
+  --accent-cyan: #A1C4FD;
+  --accent-gray: #E0E0E0;
+  --accent-warm: #FF6B6B;
+  --star-bright: rgba(255, 255, 255, 0.8);
+  --star-medium: rgba(161, 196, 253, 0.5);
+  --star-dim: rgba(227, 253, 253, 0.3);
 }
 
 /* 밝고 화사한 설날 배경 - 2026 새해 */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #fff5f7 0%, #ffe4e9 50%, #ffd4dc 100%);
+  background: linear-gradient(180deg, #E3FDFD 0%, #FFFFFF 50%, #FFF5E6 100%);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -46,7 +47,7 @@ body::before {
   transform: translate(-50%, -50%);
   font-size: 20rem;
   font-weight: 900;
-  background: linear-gradient(135deg, rgba(255, 179, 198, 0.08) 0%, rgba(255, 142, 171, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(161, 196, 253, 0.08) 0%, rgba(255, 217, 61, 0.08) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -64,12 +65,12 @@ body::after {
   width: 100%;
   height: 100%;
   background-image: 
-    /* 꽃잎 장식들 */
-    radial-gradient(circle at 15% 20%, rgba(255, 179, 198, 0.15), transparent 60%),
-    radial-gradient(circle at 85% 30%, rgba(255, 142, 171, 0.12), transparent 55%),
-    radial-gradient(circle at 25% 80%, rgba(255, 192, 203, 0.18), transparent 65%),
-    radial-gradient(circle at 75% 70%, rgba(255, 179, 198, 0.14), transparent 58%),
-    radial-gradient(circle at 50% 50%, rgba(255, 228, 225, 0.1), transparent 70%);
+    /* 부드러운 빛 효과 */
+    radial-gradient(circle at 15% 20%, rgba(161, 196, 253, 0.1), transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(255, 217, 61, 0.08), transparent 55%),
+    radial-gradient(circle at 25% 80%, rgba(255, 107, 107, 0.08), transparent 65%),
+    radial-gradient(circle at 75% 70%, rgba(161, 196, 253, 0.1), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 70%);
   pointer-events: none;
   z-index: 0;
   opacity: 0.5;
@@ -115,8 +116,9 @@ body::after {
 }
 
 .login-container {
-  background: rgba(10, 10, 12, 0.8);
-  border: 1px solid var(--border-color-bright);
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--border-color-bright);
+  border-radius: 20px;
   padding: 60px 40px;
   max-width: 400px;
   width: 100%;
@@ -127,6 +129,8 @@ body::after {
   justify-content: center;
   position: relative;
   z-index: 1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(161, 196, 253, 0.3);
 }
 
 .login-icon {
@@ -264,30 +268,30 @@ body::after {
 .login-button {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #ffb3c6 0%, #ff8fab 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   border: none;
   border-radius: 15px;
-  color: #d63384;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 179, 198, 0.4);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   transition: all 0.2s;
   font-family: 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
 .login-button:hover {
-  background: linear-gradient(135deg, #ffc8d7 0%, #ffa3bf 100%);
-  box-shadow: 0 6px 20px rgba(255, 179, 198, 0.6);
+  background: linear-gradient(135deg, #FF8E53 0%, #FFD93D 100%);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
   transform: translateY(-2px);
 }
 
 .login-button:active {
-  background: linear-gradient(135deg, #ff8fab 0%, #ff6b9d 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   transform: translateY(0);
 }
 
@@ -324,14 +328,15 @@ body::after {
 }
 
 .error-message {
-  background: rgba(10, 10, 12, 0.6);
-  border: 1px solid var(--border-color-bright);
+  background: rgba(255, 107, 107, 0.1);
+  border: 2px solid #FF6B6B;
+  border-radius: 12px;
   padding: 12px;
   margin-bottom: 20px;
-  color: var(--text-primary);
+  color: #FF6B6B;
   font-size: 11px;
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
   width: 100%;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
