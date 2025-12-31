@@ -327,6 +327,7 @@ const StartMenu = ({
             telegramId={telegramUser.id}
             username={telegramUser.username}
             referralCode={telegramUser.referralCode}
+            botUsername={telegramUser.botUsername}
           />
           {/* 알림 버튼 (새 기능 업데이트 공지) */}
           <button 
